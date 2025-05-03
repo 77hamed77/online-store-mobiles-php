@@ -15,12 +15,12 @@
             <form action="" method="post">
                 <div class="field input">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username" required>
+                    <input type="text" name="username" autocomplete="off" id="username" required>
                 </div>
                 
                 <div class="field input">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="password" autocomplete="off" id="password" required>
                 </div>
 
                 <div class="field ">
