@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --bg-main-color: #FFFFFF ;
+    --bg-secondary-color:#EF8354 ;
+
+    --btn-color:#0036CB     ;
+    --btn-hover-color:#001755;
+    --btn-text-color:#FFFFFF;
+
+    --title-color:#2D3142 ;
+    --text-color:#BFC0C0;
+
+    --border-main-color:#EF8354 ;
+    --border-hover-color:#f06124;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: cairo;
+    direction: rtl;
+}
+
+ul {
+    list-style: none;
+}
