@@ -1,3 +1,9 @@
+<?php 
+
+session_start();
+include("php/config.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +21,21 @@
         </div>
 
         <div class="right-links">
-            <a href="editProfile.php">Change Profile</a>
-            <a href="logout.php"> <button class="btn">Log out</button> </a>
+            <?php
+            $email = $_SESSION['email'];
+            $query = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}'");
+
+            while($result = mysqli_fetch_assoc($query)){
+                $_SESSION['username'] = $result['username'];
+                $_SESSION['email'] = $result['email'];
+                $_SESSION['password'] = $result['pass'];
+                $_SESSION['id'] = $result['id'];
+            }
+
+            echo "<a href='editProfile.php'>Change Profile</a>";
+            ?>
+            <!-- <a href="editProfile.php">Change Profile</a> -->
+            <a href="php/logout.php"> <button class="btn">Log out</button> </a>
         </div>
     </div>
 
@@ -24,10 +43,10 @@
         <div class="main-box box">
             <div class="top">
                 <div class="box">
-                    <p>Hello <b>Name</b>, Welcome</p>
+                    <p>Hello <b><?php echo $_SESSION['username'];?></b>, Welcome</p>
                 </div>
                 <div class="box">
-                    <p>Your Email is <b>Email<@gmail.com/b>, Welcome</p>
+                    <p>Your Email is <b><?php echo $_SESSION['email'];?></b>, Welcome</p>
                 </div>
             </div>
         </div>

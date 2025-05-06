@@ -26,7 +26,7 @@
                         $verify_query = mysqli_query($conn, "SELECT email  FROM users WHERE email = '{$email}'");
 
                         if (mysqli_num_rows($verify_query) != 0) {
-                            echo "<div>
+                            echo "<div class='message'>
                             <p>This email is used, Try another One please!</p>
                             </div> <br>";
                             echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
@@ -35,7 +35,7 @@
                             $insert = mysqli_query($conn, "INSERT INTO users(username,email,pass) VALUES('{$username}','{$email}','{$password}')");
 
                             if ($insert) {
-                                echo "  <div>
+                                echo "  <div class='message'>
                                     <p>Registration successfully!</p>
                                     </div> <br>";
                                 echo "<a href='login.php'><button class='btn'>Login Now</button></a>";
@@ -45,14 +45,14 @@
                         }
                     }
                     else{
-                        echo "<div>
+                        echo "<div class='message'>
                             <p>enter valid email address!</p>
                         </div> <br>";
                         echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
                     }
                 }
                 else{
-                    echo "<div>
+                    echo "<div class='message'>
                         <p>All input fields are required!</p>
                         </div> <br>";
                     echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";

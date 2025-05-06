@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include("php/config.php");
 
 ?>
 
@@ -20,12 +20,12 @@ session_start();
         <div class="box form-box">
 
         <?php
-        include("php/config.php");
-        $email = mysqli_real_escape_string($conn,$_POST['email']);
-        $password = mysqli_real_escape_string($conn,$_POST['pass']);
+        
+        
 
         if(isset($_POST['submit'])){
-
+            $email = mysqli_real_escape_string($conn,$_POST['email']);
+            $password = mysqli_real_escape_string($conn,$_POST['password']);
             if(!empty($email) && !empty($password)){
                 // verify email 
                 if(filter_var($email,FILTER_VALIDATE_EMAIL)){
@@ -33,16 +33,16 @@ session_start();
                     if (mysqli_num_rows($check_user) > 0) {
                         $row = mysqli_fetch_assoc($check_user);
     
-                        $_SESSION['name'] = $row['name'];
+                        $_SESSION['username'] = $row['username'];
                         $_SESSION['email'] = $row['email'];
     
-                        echo "<div>
+                        echo "<div class='message'>
                         <p>Login Success!</p>
                         </div> <br>";
                         echo "<a href='profile.php'><button class='btn'>Go To Profile</button></a>";
                     }
                     else {
-                        echo "<div>
+                        echo "<div class='message'>
                         <p>Email or Password is Incorrect!</p>
                         </div> <br>";
                         echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
@@ -50,14 +50,14 @@ session_start();
                     
                 }
                 else{
-                    echo "<div>
+                    echo "<div class='message'>
                     <p>enter valid email address!</p>
                     </div> <br>";
                     echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
                 }
             }
             else{
-                echo "<div>
+                echo "<div class='message'>
                     <p>All input fields are required!</p>
                     </div> <br>";
                 echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
