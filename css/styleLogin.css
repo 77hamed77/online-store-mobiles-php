@@ -103,8 +103,11 @@ ul {
     transition: all .3s;
     margin-top: 10px;
     padding: 0 10px;
+    font-family: cairo;
 }
-
+button{
+    font-family: cairo;
+}
 .btn:hover {
     opacity: 0.82;
 }
@@ -138,8 +141,6 @@ nav {
 .right-links{
     display: flex;
     justify-content: end;
-    margin-top: -50px;
-    margin-bottom: 100px;
 }
 .right-links a {
     display: flex;flex-direction: row;
@@ -187,4 +188,9 @@ nav {
     border-radius: 5px;
     color: red;
     margin-bottom: 10px;
+}
+.success{
+    color: rgb(9, 255, 0);
+    background-color: #f0f9ed;
+    border: 1px solid #699053;
 }
