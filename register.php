@@ -16,39 +16,48 @@
             <?php
             include("php/config.php");
             if (isset($_POST['submit'])) {
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
+                $username = trim($_POST['username']);
+                $email = trim($_POST['email']);
+                $password = trim($_POST['password']);
 
                 if(!empty($username) && !empty($email) && !empty($password)){
+                    // verify password
+                    if(strlen($password) < 6){
+                        echo "<div class='message'>
+                        <p>length password must be a bigger than 6</p>
+                        </div> <br>";
+                        echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
+                    }
+                    else{
                     // verify email 
-                    if(filter_var($email,FILTER_VALIDATE_EMAIL)){
-                        $verify_query = mysqli_query($conn, "SELECT email  FROM users WHERE email = '{$email}'");
+                        if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+                            $verify_query = mysqli_query($conn, "SELECT email  FROM users WHERE email = '{$email}'");
 
-                        if (mysqli_num_rows($verify_query) != 0) {
+                            if (mysqli_num_rows($verify_query) != 0) {
+                                echo "<div class='message'>
+                                <p>This email is used, Try another One please!</p>
+                                </div> <br>";
+                                echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
+                            }
+                            else {
+                                $insert = mysqli_query($conn, "INSERT INTO users(username,email,pass) VALUES('{$username}','{$email}','{$password}')");
+
+                                if ($insert) {
+                                    echo "  <div class='message'>
+                                        <p>Registration successfully!</p>
+                                        </div> <br>";
+                                    echo "<a href='login.php'><button class='btn'>Login Now</button></a>";
+                                } else {
+                                    echo "Can't register - Error occurred";
+                                }
+                            }
+                        }
+                        else{
                             echo "<div class='message'>
-                            <p>This email is used, Try another One please!</p>
+                                <p>enter valid email address!</p>
                             </div> <br>";
                             echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
                         }
-                        else {
-                            $insert = mysqli_query($conn, "INSERT INTO users(username,email,pass) VALUES('{$username}','{$email}','{$password}')");
-
-                            if ($insert) {
-                                echo "  <div class='message'>
-                                    <p>Registration successfully!</p>
-                                    </div> <br>";
-                                echo "<a href='login.php'><button class='btn'>Login Now</button></a>";
-                            } else {
-                                echo "Can't register - Error occurred";
-                            }
-                        }
-                    }
-                    else{
-                        echo "<div class='message'>
-                            <p>enter valid email address!</p>
-                        </div> <br>";
-                        echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
                     }
                 }
                 else{

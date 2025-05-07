@@ -24,36 +24,46 @@ include("php/config.php");
         
 
         if(isset($_POST['submit'])){
-            $email = mysqli_real_escape_string($conn,$_POST['email']);
-            $password = mysqli_real_escape_string($conn,$_POST['password']);
+            $email = trim(mysqli_real_escape_string($conn,$_POST['email']));
+            $password = trim(mysqli_real_escape_string($conn,$_POST['password']));
             if(!empty($email) && !empty($password)){
-                // verify email 
-                if(filter_var($email,FILTER_VALIDATE_EMAIL)){
-                    $check_user = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}' and pass = '{$password}'");
-                    if (mysqli_num_rows($check_user) > 0) {
-                        $row = mysqli_fetch_assoc($check_user);
-    
-                        $_SESSION['username'] = $row['username'];
-                        $_SESSION['email'] = $row['email'];
-    
-                        echo "<div class='message'>
-                        <p>Login Success!</p>
-                        </div> <br>";
-                        echo "<a href='profile.php'><button class='btn'>Go To Profile</button></a>";
+                // verify password
+                if(strlen($password) < 6){
+                    echo "<div class='message'>
+                    <p>length password must be a bigger than 6</p>
+                    </div> <br>";
+                    echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
+                }
+                else{
+
+                    
+                    // verify email 
+                    if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+                        $check_user = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}' and pass = '{$password}'");
+                        if (mysqli_num_rows($check_user) > 0) {
+                            $row = mysqli_fetch_assoc($check_user);
+        
+                            $_SESSION['username'] = $row['username'];
+                            $_SESSION['email'] = $row['email'];
+        
+                            echo "<div class='message'>
+                            <p>Login Success!</p>
+                            </div> <br>";
+                            echo "<a href='profile.php'><button class='btn'>Go To Profile</button></a>";
+                        }
+                        else {
+                            echo "<div class='message'>
+                            <p>Email or Password is Incorrect!</p>
+                            </div> <br>";
+                            echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
+                        }
                     }
-                    else {
+                    else{
                         echo "<div class='message'>
-                        <p>Email or Password is Incorrect!</p>
+                        <p>enter valid email address!</p>
                         </div> <br>";
                         echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
                     }
-                    
-                }
-                else{
-                    echo "<div class='message'>
-                    <p>enter valid email address!</p>
-                    </div> <br>";
-                    echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
                 }
             }
             else{
@@ -62,7 +72,6 @@ include("php/config.php");
                     </div> <br>";
                 echo "<a href='javascript:self.history.back()'><button class='btn'>Go back</button></a>";
             }
-
         }
         else{
         ?> 

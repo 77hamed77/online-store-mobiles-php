@@ -31,10 +31,10 @@ include("php/config.php");
         <?php
         if(isset($_POST['submit'])){
             $username = $_POST['username'];
-            // $email = $_POST['email'];
+            $email = $_POST['email'];
             // $password = $_POST['password'];
             $id = $_SESSION['id'];
-            $edit_query = mysqli_query($conn,"UPDATE users set username = '{$username}' WHERE id = '{$id}' ");
+            $edit_query = mysqli_query($conn,"UPDATE users set username = '{$username}' , email = '{$email}' WHERE id = '{$id}' ");
             if($edit_query){
                 echo "  <div class='message'>
                     <p>Ok Updated your data successfully!</p>
@@ -54,8 +54,8 @@ include("php/config.php");
 
             while($result = mysqli_fetch_assoc($query)){
                 $_SESSION['username'] = $result['username'];
-                // $_SESSION['email'] = $result['email'];
-                // $_SESSION['password'] = $result['pass'];
+                $_SESSION['email'] = $result['email'];
+                $_SESSION['password'] = $result['pass'];
             }
         ?>
             <header>Change Profile</header>
@@ -64,7 +64,7 @@ include("php/config.php");
                     <label for="username">Username</label>
                     <input type="text" name="username" autocomplete="off" id="username" value="<?php echo $_SESSION['username']; ?>" required>
                 </div>
-<!-- 
+
                 <div class="field input">
                     <label for="email">Email</label>
                     <input type="email" name="email" autocomplete="off" id="email" value="<?php echo $_SESSION['email']; ?>" required>
@@ -73,7 +73,7 @@ include("php/config.php");
                 <div class="field input">
                     <label for="password">Password</label>
                     <input type="password" name="password" autocomplete="off" id="password" value="<?php echo $_SESSION['password']; ?>" required>
-                </div> -->
+                </div>
 
                 <div class="field ">
                     <input type="submit" class="btn" name="submit" value="Update">

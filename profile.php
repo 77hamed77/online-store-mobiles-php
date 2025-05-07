@@ -40,12 +40,12 @@ include("php/config.php");
     </div>
 
     <main>
-        <div class="main-box box">
+        <div class="main-box">
             <div class="top">
-                <div class="box">
+                <div class="box" style="margin: 10px;">
                     <p>Hello <b><?php echo $_SESSION['username'];?></b>, Welcome</p>
                 </div>
-                <div class="box">
+                <div class="box" style="margin: 10px;">
                     <p>Your Email is <b><?php echo $_SESSION['email'];?></b>, Welcome</p>
                 </div>
             </div>
