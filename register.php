@@ -75,17 +75,17 @@
             <form action="" method="post">
                 <div class="field input">
                     <label for="username">Username</label>
-                    <input type="text" name="username" autocomplete="off" id="username" required>
+                    <input type="text" name="username" autocomplete="off" value="<?= htmlspecialchars($username) ?>" id="username" required>
                 </div>
 
                 <div class="field input">
                     <label for="email">Email</label>
-                    <input type="email" name="email" autocomplete="off" id="email" required>
+                    <input type="email" name="email" autocomplete="off" value="<?= htmlspecialchars($email) ?>" id="email" required>
                 </div>
 
                 <div class="field input">
                     <label for="password">Password</label>
-                    <input type="password" name="password" autocomplete="off" id="password" required>
+                    <input type="password" name="password" autocomplete="off" value="<?= htmlspecialchars($password) ?>" id="password" required>
                 </div>
 
                 <div class="field ">

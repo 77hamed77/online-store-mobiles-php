@@ -79,12 +79,12 @@ include("php/config.php");
             <form action="" method="post">
                 <div class="field input">
                     <label for="email">Email</label>
-                    <input type="email" name="email" autocomplete="off" id="email" required>
+                    <input type="email" name="email" autocomplete="off" id="email" value="<?= htmlspecialchars($email) ?>" required>
                 </div>
                 
                 <div class="field input">
                     <label for="password">Password</label>
-                    <input type="password" name="password" autocomplete="off" id="password" required>
+                    <input type="password" name="password" autocomplete="off" value="<?= htmlspecialchars($password) ?>" id="password" required>
                 </div>
 
                 <div class="field ">
