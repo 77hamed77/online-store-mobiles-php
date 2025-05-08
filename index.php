@@ -1,10 +1,17 @@
 <?php
 session_start();
 include("php/config.php");
+// لإضافة اسم المستخدم في رأس الصفحة بعد تسجيل دخوله 
 if(isset($_SESSION['username'])){
     $username ="مرحباً ". $_SESSION['username'];
 }else{
     $username = "تسجيل الدخول";
+}
+// لعرض سلة المنتجات للمستخدم بعد تسجيل دخوله
+if(isset($_SESSION['username'])){
+    $name_cart = 'سلة المنتجات';
+}else{
+    $name_cart = "";
 }
 
 // استعلام لاسترجاع جميع المنتجات (يمكنك تعديل الاستعلام مع شروط أو ترتيب كما تشاء)
@@ -42,7 +49,7 @@ $stmt->close();
     </style>
 </head>
 
-<body>
+<body style="direction: rtl;">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -63,6 +70,9 @@ $stmt->close();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php"><?php echo htmlspecialchars($username); ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><?php echo htmlspecialchars($name_cart);?></a>
                     </li>
                 </ul>
             </div>
