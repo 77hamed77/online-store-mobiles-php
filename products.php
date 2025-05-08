@@ -2,11 +2,71 @@
 session_start();
 include("php/config.php");
 
-// استعلام لاسترجاع جميع المنتجات (يمكنك تعديل الاستعلام مع شروط أو ترتيب كما تشاء)
-$stmt = $conn->prepare("SELECT id, name, description, price, image FROM products ORDER BY id DESC");
+// التأكد من تسجيل دخول المستخدم
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// الحصول على معرّف المستخدم الحالي
+$user_id = $_SESSION['id'];
+
+// معالجة تحديث الكمية وحذف العناصر من السلة
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // تحديث الكمية
+    if (isset($_POST['update_cart'])) {
+        $cart_id     = intval($_POST['cart_id']);
+        $new_quantity = intval($_POST['quantity']);
+        // إذا كانت الكمية أقل من 1، يمكن اعتبارها حذفاً
+        if ($new_quantity <= 0) {
+            $stmt = $conn->prepare("DELETE FROM cart WHERE id = ? AND user_id = ?");
+            $stmt->bind_param("ii", $cart_id, $user_id);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            $stmt = $conn->prepare("UPDATE cart SET quantity = ? WHERE id = ? AND user_id = ?");
+            $stmt->bind_param("iii", $new_quantity, $cart_id, $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
+    // حذف عنصر من السلة
+    if (isset($_POST['remove_item'])) {
+        $cart_id = intval($_POST['cart_id']);
+        $stmt = $conn->prepare("DELETE FROM cart WHERE id = ? AND user_id = ?");
+        $stmt->bind_param("ii", $cart_id, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    }
+}
+
+// استعلام لاسترجاع عناصر السلة للمستخدم الحالي مع بيانات المنتج
+$stmt = $conn->prepare("
+    SELECT 
+      c.id AS cart_id,
+      c.quantity,
+      p.id AS product_id,
+      p.name,
+      p.price,
+      p.image 
+    FROM cart c JOIN products p ON c.product_id = p.id 
+    WHERE c.user_id = ?
+");
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$products_result = $stmt->get_result();
+$result = $stmt->get_result();
+
+$cart_items = [];
+while ($row = $result->fetch_assoc()) {
+    $cart_items[] = $row;
+}
 $stmt->close();
+
+// حساب الإجمالي الكلي
+$total = 0;
+foreach ($cart_items as $item) {
+    $total += $item['price'] * $item['quantity'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ar">
@@ -14,25 +74,12 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المنتجات الرئيسية | متجرك</title>
-    <!-- Bootstrap CSS -->
+    <title>سلة المنتجات | متجرك</title>
+    <!-- تضمين Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background:#FFFFFF;
-        }
-
-        .product-card {
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-img {
-            height: 200px;
-            object-fit: cover;
+            background: #f8f9fa;
         }
     </style>
 </head>
@@ -48,67 +95,81 @@ $stmt->close();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">الرئيسية</a>
+                        <a class="nav-link" href="index.php">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">عروض</a>
+                        <a class="nav-link active" aria-current="page" href="products.php">سلة المنتجات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">حول</a>
+                        <a class="nav-link" href="profile.php">الملف الشخصي</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">تسجيل الدخول</a>
+                        <a class="nav-link" href="php/logout.php">تسجيل الخروج</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="container my-4">
-        <div class="p-5 text-center bg-primary text-white rounded-3">
-            <h1 class="display-4">مرحباً بكم في متجرك!</h1>
-            <p class="lead">استعرض أفضل المنتجات لدينا وتمتع بتجربة تسوق فريدة.</p>
-        </div>
+    <div class="container mt-4">
+        <h2 class="mb-4">سلة المنتجات</h2>
+        <?php if (count($cart_items) > 0): ?>
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>الصورة</th>
+                            <th>اسم المنتج</th>
+                            <th>السعر</th>
+                            <th>الكمية</th>
+                            <th>الإجمالي</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($cart_items as $item): ?>
+                            <tr>
+                                <td>
+                                    <?php if (!empty($item['image'])): ?>
+                                        <img src="uploads/<?= htmlspecialchars($item['image']); ?>" alt="<?= htmlspecialchars($item['name']); ?>" width="80">
+                                    <?php else: ?>
+                                        <img src="img/default-product.png" alt="صورة افتراضية" width="80">
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= htmlspecialchars($item['name']); ?></td>
+                                <td><?= number_format($item['price'], 2); ?> ريال</td>
+                                <td>
+                                    <form action="" method="post" class="d-flex align-items-center">
+                                        <input type="hidden" name="cart_id" value="<?= $item['cart_id']; ?>">
+                                        <input type="number" name="quantity" value="<?= htmlspecialchars($item['quantity']); ?>" min="1" class="form-control me-2" style="width: 100px;">
+                                        <button type="submit" name="update_cart" class="btn btn-sm btn-info">تحديث</button>
+                                    </form>
+                                </td>
+                                <td><?= number_format($item['price'] * $item['quantity'], 2); ?> ريال</td>
+                                <td>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="cart_id" value="<?= $item['cart_id']; ?>">
+                                        <button type="submit" name="remove_item" class="btn btn-sm btn-danger" onclick="return confirm('هل أنت متأكد من إزالة هذا المنتج؟');">حذف</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end">
+                <h4>الإجمالي الكلي: <?= number_format($total, 2); ?> ريال</h4>
+            </div>
+            <div class="mt-4">
+                <a href="checkout.php" class="btn btn-success">الانتقال إلى صفحة الدفع</a>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-info">لا توجد منتجات في سلة التسوق الخاصة بك.</div>
+            <a href="index.php" class="btn btn-primary">العودة للتسوق</a>
+        <?php endif; ?>
     </div>
 
-    <!-- Products Grid -->
-    <div class="container my-4">
-        <div class="row">
-            <?php if ($products_result->num_rows > 0): ?>
-                <?php while ($product = $products_result->fetch_assoc()): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-card h-100">
-                            <?php if (!empty($product['image'])): ?>
-                                <img src="uploads/<?= htmlspecialchars($product['image']); ?>" class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']); ?>">
-                            <?php else: ?>
-                                <img src="img/default-product.png" class="card-img-top product-img" alt="صورة افتراضية">
-                            <?php endif; ?>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title"><?= htmlspecialchars($product['name']); ?></h5>
-                                <p class="card-text"><?= htmlspecialchars(mb_substr($product['description'], 0, 100)); ?>...</p>
-                                <p class="card-text fw-bold"><?= number_format($product['price'], 2); ?> ريال</p>
-                                <a href="product_details.php?id=<?= htmlspecialchars($product['id']); ?>" class="btn btn-primary mt-auto">المزيد</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <div class="col-12">
-                    <div class="alert alert-warning text-center">لا توجد منتجات متاحة حالياً.</div>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-light text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; <?= date("Y"); ?> متجرك. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS Bundle -->
+    <!-- تضمين Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
