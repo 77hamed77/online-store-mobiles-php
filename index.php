@@ -76,7 +76,13 @@ $stmt->close();
                         <a class="nav-link" href="#">حول</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php"><?php echo htmlspecialchars($username); ?></a>
+                        <?php 
+                        if(isset($_SESSION['username'])){
+                            echo "<a class='nav-link' href='#'> ".htmlspecialchars($username) ."</a>";
+                        }else{
+                            echo "<a class='nav-link' href='login.php'> ".htmlspecialchars($username) ."</a>";
+                        }
+                        ?>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart);?></a>

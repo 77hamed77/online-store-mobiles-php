@@ -137,16 +137,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <link rel="stylesheet" href="css/styleLogin.css">
 </head>
 <body dir="rtl">
-    <div class="nav">
-        <div class="logo">
-            <p><a href="profile.php">Logo</a></p>
-        </div>
-        <div class="right-links">
-            <a href="editProfile.php">تعديل الملف الشخصي</a>
-            <a href="php/logout.php"><button class="btn">تسجيل الخروج</button></a>
-        </div>
-    </div>
-    <div class="container">
+    
+    <div class="container" style="margin: 50px 0;">
         <div class="box form-box">
             <?php
             if (!empty($error_msg)) {
