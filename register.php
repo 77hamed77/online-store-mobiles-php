@@ -73,10 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <link rel="stylesheet" href="css/styleLogin.css">
     <title>تسجيل جديد | متجر إلكتروني</title>
 </head>
-<body style="direction: rtl;">
+<body dir="rtl">
     <div class="container">
         <div class="box form-box">
-            <header style="direction: rtl;">تسجيل جديد : </header>
+            <header>تسجيل جديد : </header>
 
             <?php
             // عرض رسائل الخطأ والنجاح
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
             <!-- عرض النموذج فقط إذا لم يكن التسجيل موفقاً -->
             <?php if (empty($success_msg)) : ?>
-            <form action="" method="post" style="direction: rtl;">
+            <form action="" method="post">
                 <!-- تضمين رمز CSRF -->
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']); ?>">
                 

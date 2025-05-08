@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <title>تعديل المنتج | لوحة التحكم</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="direction: rtl;">
+<body dir="rtl">
     <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid ">

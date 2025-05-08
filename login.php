@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <title>تسجيل الدخول | متجر إلكتروني</title>
 </head>
 
-<body style="direction: rtl;">
+<body dir="rtl">
     <div class="container">
         <div class="box form-box">
             <?php
@@ -95,8 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             // عرض النموذج فقط إذا لم يكن تسجيل الدخول قد نجح
             if (empty($success_msg)):
             ?>
-                <header style="direction: rtl;">تسجيل الدخول</header>
-                <form style="direction: rtl;" action="" method="post">
+                <header>تسجيل الدخول</header>
+                <form action="" method="post">
                     <!-- تضمين رمز CSRF -->
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']); ?>">
 

@@ -42,7 +42,7 @@ $stmt->close();
     </style>
 </head>
 
-<body style="direction: rtl;">
+<body dir="rtl">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
