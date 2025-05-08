@@ -2,24 +2,29 @@
 session_start();
 include("php/config.php");
 // لإضافة اسم المستخدم في رأس الصفحة بعد تسجيل دخوله 
-if(isset($_SESSION['username'])){
-    $username ="مرحباً ". $_SESSION['username'];
-}else{
+if (isset($_SESSION['username'])) {
+    $username = "مرحباً " . $_SESSION['username'];
+} else {
     $username = "تسجيل الدخول";
 }
 // لعرض سلة المنتجات للمستخدم بعد تسجيل دخوله
-if(isset($_SESSION['username'])){
+if (isset($_SESSION['username'])) {
     $name_cart = 'سلة المنتجات';
-}else{
+} else {
     $name_cart = "";
 }
 // عرض ملف المستخدم الشخصي بعد قيامه بستجيل الدخول 
-if(isset($_SESSION['username'])){
+if (isset($_SESSION['username'])) {
     $name_profile = "الصفحة الشخصية";
-}else{
+} else {
     $name_profile = "";
 }
-
+// عرض تسجيل الخروج للمستخدم بعد قيامه بعملية تسجيل الدخول 
+if (isset($_SESSION['username'])) {
+    $name_logout = 'تسجيل الخروج';
+} else {
+    $name_logout = "";
+}
 // استعلام لاسترجاع جميع المنتجات (يمكنك تعديل الاستعلام مع شروط أو ترتيب كما تشاء)
 $stmt = $conn->prepare("SELECT id, name, description, price, image FROM products ORDER BY id DESC");
 $stmt->execute();
@@ -37,7 +42,7 @@ $stmt->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background:#FFFFFF;
+            background: #FFFFFF;
         }
 
         .product-card {
@@ -76,19 +81,22 @@ $stmt->close();
                         <a class="nav-link" href="#">حول</a>
                     </li>
                     <li class="nav-item">
-                        <?php 
-                        if(isset($_SESSION['username'])){
-                            echo "<a class='nav-link' href='#'> ".htmlspecialchars($username) ."</a>";
-                        }else{
-                            echo "<a class='nav-link' href='login.php'> ".htmlspecialchars($username) ."</a>";
+                        <?php
+                        if (isset($_SESSION['username'])) {
+                            echo "<a class='nav-link' href='#'> " . htmlspecialchars($username) . "</a>";
+                        } else {
+                            echo "<a class='nav-link' href='login.php'> " . htmlspecialchars($username) . "</a>";
                         }
                         ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart);?></a>
+                        <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart); ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php"><?php echo htmlspecialchars($name_profile);?></a>
+                        <a class="nav-link" href="profile.php"><?php echo htmlspecialchars($name_profile); ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="php/logout.php"><?php echo htmlspecialchars($name_logout); ?></a>
                     </li>
                 </ul>
             </div>
