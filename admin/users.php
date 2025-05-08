@@ -106,7 +106,7 @@ $stmt->close();
     </style>
 </head>
 
-<body>
+<body style="direction: rtl;">
     <!-- شريط التنقل باستخدام Bootstrap -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -115,7 +115,7 @@ $stmt->close();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="adminNavbar">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" href="../index.php">المنتجات</a>
                     </li>

@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <title>تسجيل الدخول | متجر إلكتروني</title>
 </head>
 
-<body>
+<body style="direction: rtl;">
     <div class="container">
         <div class="box form-box">
             <?php

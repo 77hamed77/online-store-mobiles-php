@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <link rel="stylesheet" href="css/styleLogin.css">
     <title>تسجيل جديد | متجر إلكتروني</title>
 </head>
-<body>
+<body style="direction: rtl;">
     <div class="container">
         <div class="box form-box">
             <header style="direction: rtl;">تسجيل جديد : </header>

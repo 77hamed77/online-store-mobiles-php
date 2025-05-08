@@ -42,7 +42,7 @@ $stmt->close();
     </style>
 </head>
 
-<body>
+<body style="direction: rtl;">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -51,7 +51,7 @@ $stmt->close();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">الرئيسية</a>
                     </li>

@@ -82,7 +82,7 @@ $stmt->close();
         }
     </style>
 </head>
-<body>
+<body style="direction: rtl;">
     <div class="nav">
         <div class="logo">
             <p>Logo</p>

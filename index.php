@@ -58,7 +58,8 @@ $stmt->close();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
+                    <!-- ms-auto : english | me-auto : arabic -->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">الرئيسية</a>
                     </li>
@@ -72,7 +73,7 @@ $stmt->close();
                         <a class="nav-link" href="login.php"><?php echo htmlspecialchars($username); ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><?php echo htmlspecialchars($name_cart);?></a>
+                        <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart);?></a>
                     </li>
                 </ul>
             </div>
