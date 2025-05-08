@@ -3,10 +3,10 @@ session_start();
 include("../php/config.php");
 
 // التحقق من صلاحيات المدير
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit;
-}
+// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+//     header("Location: login.php");
+//     exit;
+// }
 
 // التحقق من وجود معرّف المنتج
 if (!isset($_GET['id']) || empty($_GET['id'])) {

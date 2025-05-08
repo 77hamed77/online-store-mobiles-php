@@ -46,7 +46,7 @@ $stmt->close();
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.php">متجرك</a>
+            <a class="navbar-brand" href="index.php">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -83,7 +83,7 @@ $stmt->close();
                 <h4 class="text-primary mb-4"><?= number_format($product['price'], 2); ?> ريال</h4>
                 <p><?= nl2br(htmlspecialchars($product['description'])); ?></p>
                 <!-- زر إضافة إلى السلة -->
-                <form action="products.php" method="post" class="mt-4">
+                <form action="add_to_cart.php" method="post" class="mt-4">
                     <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
                     <div class="mb-3">
                         <label for="quantity" class="form-label">الكمية</label>

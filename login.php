@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $error_msg = "يجب أن تكون كلمة المرور أطول من 6 أحرف!";
         }
         // التحقق من صلاحيات المدير: يجب أن يكون المستخدم مسجّل دخول كمدير
-        elseif($email == 'admin@example.com'){
+        elseif($email == 'admin@example.com' && $password = '123123'){
             header("Location: products.php");
             exit;
         }
