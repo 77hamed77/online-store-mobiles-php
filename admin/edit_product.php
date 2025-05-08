@@ -3,7 +3,7 @@ session_start();
 include("../php/config.php");
 
 // التحقق من صلاحيات المدير
-if (!isset($_SESSION['email']) || $_SESSION['email'] !== 'admin@example.com') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit;
 }
@@ -20,7 +20,8 @@ $error_msg = "";
 $success_msg = "";
 
 // استرجاع بيانات المنتج من قاعدة البيانات
-$stmt = $conn->prepare("SELECT name, description, price, image FROM products WHERE id = ?");
+// لازم رجع السعة 
+$stmt = $conn->prepare("SELECT name, description, price,quantity, image FROM products WHERE id = ?");
 $stmt->bind_param("i", $product_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -38,15 +39,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $name        = trim($_POST['name']);
     $description = trim($_POST['description']);
     $price       = floatval($_POST['price']);
+    $quantity    = intval($_POST['quantity']);
     $new_image   = $product['image']; // الصورة الحالية للمنتج
 
     // التحقق من صحة المدخلات
-    if (empty($name) || empty($description) || empty($price)) {
+    if (empty($name) || empty($description) || empty($price) || empty($quantity)) {
         $error_msg = "يجب ملء جميع الحقول!";
     } elseif ($price <= 0) {
         $error_msg = "يجب أن يكون السعر أكبر من الصفر!";
     }
-
+    elseif($quantity <= 0){
+        $error_msg = " يجب ان تكون الكمية اكبر او تساوي الصفر";
+    }
     // معالجة تحميل صورة جديدة إن وُجدت
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $file_tmp  = $_FILES['image']['tmp_name'];
@@ -75,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     // تحديث البيانات في حال عدم وجود أخطاء
     if (empty($error_msg)) {
-        $stmt = $conn->prepare("UPDATE products SET name = ?, description = ?, price = ?, image = ? WHERE id = ?");
-        $stmt->bind_param("ssdsi", $name, $description, $price, $new_image, $product_id);
+        $stmt = $conn->prepare("UPDATE products SET name = ?, description = ?, price = ?,quantity = ?, image = ? WHERE id = ?");
+        $stmt->bind_param("ssdisi", $name, $description, $price,$quantity, $new_image, $product_id);
 
         if ($stmt->execute()) {
             $success_msg = "تم تحديث المنتج بنجاح!";
@@ -101,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         <div class="container-fluid">
             <a class="navbar-brand" href="users.php">لوحة المدير</a>
             <div class="navbar-nav">
-                <a class="nav-link" href="users.php">المنتجات</a>
+                <a class="nav-link" href="index.php">المنتجات</a>
                 <a class="nav-link" href="php/logout.php">تسجيل الخروج</a>
             </div>
         </div>
@@ -132,6 +136,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     <div class="mb-3">
                         <label for="price" class="form-label">سعر المنتج</label>
                         <input type="number" step="0.01" class="form-control" name="price" id="price" value="<?= htmlspecialchars($product['price']) ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label"> كمية المنتج</label>
+                        <input type="number" step="1" class="form-control" name="quantity" id="quantity" value="<?= htmlspecialchars($product['quantity']) ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">صورة المنتج</label>

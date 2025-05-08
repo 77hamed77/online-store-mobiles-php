@@ -1,6 +1,11 @@
 <?php
 session_start();
 include("php/config.php");
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}else{
+    $username = "تسجيل الدخول";
+}
 
 // استعلام لاسترجاع جميع المنتجات (يمكنك تعديل الاستعلام مع شروط أو ترتيب كما تشاء)
 $stmt = $conn->prepare("SELECT id, name, description, price, image FROM products ORDER BY id DESC");
@@ -14,7 +19,7 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المنتجات الرئيسية | متجرك</title>
+    <title>الصفحة الرئيسية | متجر إلكتروني</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -41,7 +46,7 @@ $stmt->close();
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">متجرك</a>
+            <a class="navbar-brand" href="#">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -57,7 +62,7 @@ $stmt->close();
                         <a class="nav-link" href="#">حول</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">تسجيل الدخول</a>
+                        <a class="nav-link" href="login.php"><?php echo htmlspecialchars($username); ?></a>
                     </li>
                 </ul>
             </div>

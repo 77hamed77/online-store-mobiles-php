@@ -25,7 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $error_msg = "يرجى إدخال بريد إلكتروني صالح!";
         } elseif (strlen($password) < 6) {
             $error_msg = "يجب أن تكون كلمة المرور أطول من 6 أحرف!";
-        } else {
+        }
+        // التحقق من صلاحيات المدير: يجب أن يكون المستخدم مسجّل دخول كمدير
+        elseif($email == 'admin@example.com'){
+            header("Location: products.php");
+            exit;
+        }
+        else {
             // استخدام عبارة التحضير لتفادي حقن SQL مع جلب عمود id أيضًا
             $stmt = $conn->prepare("SELECT id, username, email, pass FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);
@@ -58,11 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             } else {
                 $error_msg = "حدث خطأ ما أثناء عملية تسجيل الدخول، حاول مرة أخرى.";
             }
-            // التحقق من صلاحيات المدير: يجب أن يكون المستخدم مسجّل دخول كمدير
-            if (isset($_SESSION['email']) || $_SESSION['email'] == 'admin@example.com') {
-                header("Location: products.php");
-                exit;
-            }
             $stmt->close();
         }
     }
@@ -89,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             }
             if (!empty($success_msg)) {
                 echo "<div class='message success'><p>{$success_msg}</p></div><br>";
-                echo "<a href='products.php'><button class='btn'>الانتقال إلى الصفحة الرئيسية للمتجر</button></a>";
+                echo "<a href='index.php'><button class='btn'>الانتقال إلى الصفحة الرئيسية للمتجر</button></a>";
             }
             // عرض النموذج فقط إذا لم يكن تسجيل الدخول قد نجح
             if (empty($success_msg)):
