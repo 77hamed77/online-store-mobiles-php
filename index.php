@@ -13,6 +13,12 @@ if(isset($_SESSION['username'])){
 }else{
     $name_cart = "";
 }
+// عرض ملف المستخدم الشخصي بعد قيامه بستجيل الدخول 
+if(isset($_SESSION['username'])){
+    $name_profile = "الصفحة الشخصية";
+}else{
+    $name_profile = "";
+}
 
 // استعلام لاسترجاع جميع المنتجات (يمكنك تعديل الاستعلام مع شروط أو ترتيب كما تشاء)
 $stmt = $conn->prepare("SELECT id, name, description, price, image FROM products ORDER BY id DESC");
@@ -74,6 +80,9 @@ $stmt->close();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart);?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php"><?php echo htmlspecialchars($name_profile);?></a>
                     </li>
                 </ul>
             </div>
