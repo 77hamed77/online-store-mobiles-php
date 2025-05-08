@@ -2,7 +2,7 @@
 session_start();
 include("php/config.php");
 if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
+    $username ="مرحباً ". $_SESSION['username'];
 }else{
     $username = "تسجيل الدخول";
 }
