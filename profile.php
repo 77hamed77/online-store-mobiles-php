@@ -66,6 +66,7 @@ $stmt->close();
             border: 2px solid rgba(76, 68, 182, 0.808);
         }
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

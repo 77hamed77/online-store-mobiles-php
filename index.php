@@ -40,6 +40,7 @@ $stmt->close();
     <title>الصفحة الرئيسية | متجر إلكتروني</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p0vh/tEYSnG/QKoqmRX6Z4xgAE0TCJf9q2yzflP8uDzA9cifFOJCBa0L+Tv67gO2HGl6ETP7ZxgzGRcy2Mif2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             background: #FFFFFF;
@@ -58,11 +59,12 @@ $stmt->close();
             object-fit: cover;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body dir="rtl">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -105,10 +107,46 @@ $stmt->close();
 
     <!-- Hero Section -->
     <div class="container my-4">
-        <div class="p-5 text-center bg-primary text-white rounded-3">
-            <h1 class="display-4">مرحباً بكم في متجرك!</h1>
-            <p class="lead">استعرض أفضل المنتجات لدينا وتمتع بتجربة تسوق فريدة.</p>
+        <!-- carousel -->
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+
     </div>
 
     <!-- Products Grid -->
@@ -141,11 +179,98 @@ $stmt->close();
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-3">
+    <!-- <footer class="bg-dark text-light text-center py-3">
         <div class="container">
             <p class="mb-0">&copy; <?= date("Y"); ?> متجرك. جميع الحقوق محفوظة.</p>
         </div>
+    </footer> -->
+
+    <!-- Footer Start -->
+    <!-- Footer Start -->
+    <footer>
+        <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">
+            <div class="row pt-5">
+                <!-- القسم الأول: التواصل -->
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h4 class="text-uppercase text-light mb-4">التواصل</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-white ms-3"></i> سوريا - إدلب</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-white ms-3"></i>+9053424455</p>
+                    <p><i class="fa fa-envelope text-white ms-3"></i>info@example.com</p>
+                    <h6 class="text-uppercase text-white py-2">تابعنا على المنصات الاجتماعية</h6>
+                    <div class="d-flex justify-content-start">
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- القسم الثاني: روابط مفيدة -->
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h4 class="text-uppercase text-light mb-4">روابط مفيدة</h4>
+                    <div class="d-flex flex-column">
+                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Private Policy</a>
+                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Term & Conditions</a>
+                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> New Member Registration</a>
+                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Affiliate Programme</a>
+                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Return & Refund</a>
+                        <a class="text-body" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Help & FAQs</a>
+                    </div>
+                </div>
+                <!-- القسم الثالث: معرض الصور -->
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h4 class="text-uppercase text-light mb-4">معرض الصور للمنتجات</h4>
+                    <div class="row mx-n1">
+                        <div class="col-4 px-1 mb-2">
+                            <a href="#"><img class="w-100" src="images/mobile3Rbg.png" alt="Gallery 1"></a>
+                        </div>
+                        <div class="col-4 px-1 mb-2">
+                            <a href="#"><img class="w-100" src="images/mobile2Rbg.png" alt="Gallery 2"></a>
+                        </div>
+                        <div class="col-4 px-1 mb-2">
+                            <a href="#"><img class="w-100" src="images/mobile1Rbg.png" alt="Gallery 3"></a>
+                        </div>
+                        <div class="col-4 px-1 mb-2">
+                            <a href="#"><img class="w-100" src="images/mobile4Rbg.png" alt="Gallery 4"></a>
+                        </div>
+                        <div class="col-4 px-1 mb-2">
+                            <a href="#"><img class="w-100" src="images/mobile5Rbg.png" alt="Gallery 5"></a>
+                        </div>
+                        <div class="col-4 px-1 mb-2">
+                            <a href="#"><img class="w-100" src="images/mobile6Rbg.png" alt="Gallery 6"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- القسم الرابع: النشرة البريدية -->
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h4 class="text-uppercase text-light mb-4">النشرة البريدية</h4>
+                    <p class="mb-4">اشترك في النشرة البريدية للمتجر الإلكتروني لتحصل على اخر العروض و المنتجات</p>
+                    <div class="w-100 mb-3">
+                        <style>
+                            /* لحقل الإدخال: الزوايا اليسرى مستديرة، واليمنى حادة */
+                            .input-shared {
+                                border-radius: 0 25px 25px 0;
+                            }
+
+                            /* للزر: الزوايا اليمنى مستديرة، واليسرى حادة */
+                            .button-shared {
+                                border-radius: 25px 0 0 25px;
+                            }
+                        </style>
+                        <div class="d-flex">
+                            <input type="text" class="form-control input-shared" placeholder="أدخل بريدك" />
+                            <button class="btn btn-primary button-shared">اشتراك</button>
+                        </div>
+
+                    </div>
+                    <i>شكرا ل زيارتكم متجرنا</i>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid bg-dark py-4">
+            <p class="mb-0 text-center text-light">&copy; <a href="#" class="text-light text-decoration-none">Hamid Muhammed</a>. All Rights Reserved.</p>
+        </div>
     </footer>
+    <!-- Footer End -->
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

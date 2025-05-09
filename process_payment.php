@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: #f8f9fa;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

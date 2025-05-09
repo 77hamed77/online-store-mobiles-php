@@ -64,6 +64,7 @@ $stmt->close();
             font-weight: bold;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body dir="rtl">

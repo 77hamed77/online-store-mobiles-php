@@ -40,6 +40,7 @@ $stmt->close();
             object-fit: cover;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body dir="rtl">
