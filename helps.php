@@ -1,113 +1,150 @@
-<?php
-// لعرض سلة المنتجات للمستخدم بعد تسجيل دخوله
-if (isset($_SESSION['username'])) {
-    $name_cart = 'سلة المنتجات';
-} else {
-    $name_cart = "";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حول الموقع | متجر إلكتروني</title>
+    <title>مساعدة المتجر | متجر إلكتروني</title>
     <!-- تضمين Bootstrap CSS (نسخة RTL) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-        /* خلفية قسم البطل مع تأثير صورة تغطي كامل العرض */
-        .about-hero {
-            background: url('images/about-bg.jpg') no-repeat center center/cover;
-            padding: 100px 0;
-            color: #fff;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-            text-align: center;
+        body {
+            background-color: #f0f2f5;
         }
 
-        /* تنسيق عنوان الأقسام */
-        .section-title {
+        /* قسم البطل (Hero Section) */
+        .hero-section {
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* تنسيق العناوين داخل قسم المساعدة */
+        .help-section h2 {
+            color: #0056b3;
             margin-bottom: 20px;
+        }
+
+        /* تنسيق أكورديون المساعدة */
+        .accordion-item {
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .accordion-button {
+            background-color: #fff;
+            color: #333;
             font-weight: bold;
         }
 
-        /* بعض التعديلات الإضافية على الفقرات */
-        .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        /* تذييل الصفحة */
-        
-        .bbgg{
-            background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
+        .accordion-button:not(.collapsed) {
+            background-color: #e9ecef;
         }
     </style>
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
-    <!-- شريط التنقل (اختياري) -->
+    <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">LOGO</a>
+            <a class="navbar-brand" href="index.php">متجرك</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل التنقل">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">الرئيسية</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">حول</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart); ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.php">اتصل بنا</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="help.php">المساعدة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.php">اتصل بنا</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- قسم البطل (Hero Section) -->
-    <section class="about-hero bbgg">
+    <!-- قسم البطل -->
+    <section class="hero-section">
         <div class="container">
-            <h1 class="display-4">من نحن</h1>
-            <p class="lead">نحن نقدم أفضل تجربة تسوق إلكتروني تجمع بين الجودة والابتكار.</p>
+            <h1 class="display-4 fw-bold">مركز المساعدة</h1>
+            <p class="lead">تعرف على كيفية إجراء عملية الشراء بشكل صحيح وتجنب الأخطاء الشائعة.</p>
         </div>
     </section>
 
-    <!-- محتوى الصفحة -->
-    <section class="about-content">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- صورة توضيحية -->
-                <div class="col-md-6 mb-4">
-                    <img src="images/bg_5.jpeg"  class="img-fluid rounded my-5" style="width: 550px;height:550px" alt="حول موقعنا">
+    <!-- قسم محتوى المساعدة (أكورديون) -->
+    <section class="container help-section mb-5">
+        <div class="accordion" id="helpAccordion">
+            <!-- كيفية الشراء الصحيح -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCorrect">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseCorrect" aria-expanded="true" aria-controls="collapseCorrect">
+                        كيفية الشراء الصحيح
+                    </button>
+                </h2>
+                <div id="collapseCorrect" class="accordion-collapse collapse show" aria-labelledby="headingCorrect" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">التأكد من صحة بياناتك الشخصية ومعلومات التوصيل قبل تأكيد الطلب.</li>
+                            <li class="list-group-item">اختيار وسيلة الدفع الآمنة والمعتمدة لدى المتجر.</li>
+                            <li class="list-group-item">قراءة الشروط والأحكام وسياسات الإرجاع والاستبدال.</li>
+                            <li class="list-group-item">مراجعة تفاصيل الطلب والتأكد من الكميات والعروض المطبقة قبل الدفع.</li>
+                            <li class="list-group-item">الحصول على تأكيد الطلب عبر البريد الإلكتروني أو الرسائل النصية.</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- تفاصيل حول الشركة -->
-                <div class="col-md-6 " style="margin-top:-50px ;">
-                    <h2 class="section-title">قصتنا</h2>
-                    <p>بدأت رحلتنا منذ عدة سنوات بهدف تقديم حلول مبتكرة في عالم التجارة الإلكترونية. نمزج بين خدمة العملاء الفريدة والتكنولوجيا المتطورة لنضمن لك تجربة تسوق لا تُنسى.</p>
-                    <h3 class="section-title">مهمتنا</h3>
-                    <p>نسعى إلى تمكينك من الحصول على أفضل المنتجات بأعلى مستويات الجودة مع توفير تجربة شراء سلسة ومميزة.</p>
-                    <h3 class="section-title">رؤيتنا</h3>
-                    <p>نسعى لأن نكون الخيار الأول والرائد في مجال التجارة الإلكترونية وأن نبتكر باستمرار لنواكب احتياجات السوق وتطلعات العملاء.</p>
+            </div>
+            <!-- الأخطاء الشائعة وكيفية تجنبها -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingWrong">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseWrong" aria-expanded="false" aria-controls="collapseWrong">
+                        الأخطاء الشائعة وكيفية تجنبها في الشراء
+                    </button>
+                </h2>
+                <div id="collapseWrong" class="accordion-collapse collapse" aria-labelledby="headingWrong" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">إدخال بيانات ناقصة أو خاطئة تؤدي إلى تأخير التوصيل أو إلغاء الطلب.</li>
+                            <li class="list-group-item">استخدام وسائل دفع غير آمنة أو غير معتمدة مما قد يؤدي إلى مشاكل مالية.</li>
+                            <li class="list-group-item">عدم مراجعة تفاصيل الطلب قبل التأكيد مما يؤدي إلى طلب منتجات أو كميات غير مرغوبة.</li>
+                            <li class="list-group-item">عدم قراءة معلومات العروض والخصومات مما يفوت الاستفادة من أفضل الأسعار.</li>
+                            <li class="list-group-item">إهمال التواصل مع خدمة العملاء عند وجود شكوك أو استفسارات قبل إتمام عملية الشراء.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- سياسات الدفع والإرجاع -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPayment">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment">
+                        سياسات الدفع والإرجاع
+                    </button>
+                </h2>
+                <div id="collapsePayment" class="accordion-collapse collapse" aria-labelledby="headingPayment" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">يتم قبول الدفع بواسطة البطاقات الائتمانية والتحويل البنكي والوسائل الإلكترونية الآمنة.</li>
+                            <li class="list-group-item">يحق لك إلغاء الطلب أو تعديله قبل بدء عملية الشحن وفق الشروط المحددة من قبل المتجر.</li>
+                            <li class="list-group-item">يمكنك استبدال أو إرجاع المنتجات خلال فترة محددة بعد الاستلام بشرط أن تكون في حالة جديدة وغير مستخدمة.</li>
+                            <li class="list-group-item">يرجى مراجعة سياسة الإرجاع والاستبدال الخاصة بكل منتج قبل الشراء للتأكد من توافقها مع احتياجاتك.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+<div class="alert alert-info text-center">
+                يمكنك التواصل معنا لنساعدك في حل مشكلتك
+            </div>
+            <div class="text-center mt-4">
+                <a href="contact.php" class="btn btn-primary">تواصل معنا</a>
+            </div>
     <!-- Footer Start -->
     <footer>
         <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">

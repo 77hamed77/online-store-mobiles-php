@@ -87,6 +87,7 @@ $result = $conn->query($sql);
     <title>إدارة المستخدمين | لوحة المدير</title>
     <!-- تضمين Bootstrap CSS (نسخة RTL لدعم اللغة العربية) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 

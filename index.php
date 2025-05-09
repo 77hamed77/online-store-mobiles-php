@@ -374,12 +374,12 @@ $stmt->close();
                 <div class="col-lg-3 col-md-6 mb-5">
                     <h4 class="text-uppercase text-light mb-4">روابط مفيدة</h4>
                     <div class="d-flex flex-column">
-                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Private Policy</a>
-                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Term & Conditions</a>
-                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> New Member Registration</a>
-                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Affiliate Programme</a>
-                        <a class="text-body mb-2" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Return & Refund</a>
-                        <a class="text-body" href="#"><i class="fa fa-angle-right text-white ms-2"></i> Help & FAQs</a>
+                        <a class="text-body mb-2" href="index.php"><i class="fa fa-angle-right text-white ms-2">الصفحة الرئيسية</i></a>
+                        <a class="text-body mb-2" href="about.php"><i class="fa fa-angle-right text-white ms-2">حول الموقع</i></a>
+                        <a class="text-body mb-2" href="contact.php"><i class="fa fa-angle-right text-white ms-2">تواصل معنا</i></a>
+                        <a class="text-body mb-2" href="roles.php"><i class="fa fa-angle-right text-white ms-2">قوانين المتجر</i></a>
+                        <a class="text-body mb-2" href="helps.php"><i class="fa fa-angle-right text-white ms-2">المساعدة</i></a>
+                        <a class="text-body" href="#"><i class="fa fa-angle-right text-white ms-2"></i></a>
                     </div>
                 </div>
                 <!-- القسم الثالث: معرض الصور -->
