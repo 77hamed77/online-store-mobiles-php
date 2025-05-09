@@ -40,7 +40,6 @@ $stmt->close();
     <title>الصفحة الرئيسية | متجر إلكتروني</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p0vh/tEYSnG/QKoqmRX6Z4xgAE0TCJf9q2yzflP8uDzA9cifFOJCBa0L+Tv67gO2HGl6ETP7ZxgzGRcy2Mif2g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <style>
@@ -59,6 +58,87 @@ $stmt->close();
         .product-img {
             height: 200px;
             object-fit: cover;
+        }
+
+        /* slider two */
+
+
+        /* خلفية نمط ماسي: الألوان الأبيض والرمادي الفاتح */
+        .diamond-background {
+            /* هنا نستخدم SVG بسيط لإنشاء نمط ماسي؛ يمكنك تعديل اللون والحجم حسب رغبتك */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpolygon points='20,0 40,20 20,40 0,20' fill='%23f0f0f0'/%3E%3C/svg%3E");
+            background-color: #fff;
+            background-repeat: repeat;
+        }
+
+        /* تنسيق الكاروسيل بشكل عام */
+        .custom-carousel {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        /* تخصيص أزرار التنقل (السهمين) */
+        .custom-carousel .carousel-control-prev,
+        .custom-carousel .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background-color 0.3s ease;
+        }
+
+        /* أيقونات الأسهم */
+        .custom-carousel .carousel-control-prev-icon,
+        .custom-carousel .carousel-control-next-icon {
+            width: 20px;
+            height: 20px;
+            /* نستخدم SVG مضمّن مع fill أسود */
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* سهم السابق: نحتاج لعكس SVG الافتراضي ليصبح يشير إلى اليسار */
+        .custom-carousel .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M4.854 0.146a.5.5 0 1 0-.708.708L6.293 3H0.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 1 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3z'/%3E%3C/svg%3E");
+            transform: scaleX(-1);
+            /* يعكس السهم أفقيًا */
+        }
+
+        .custom-carousel .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M3.146 0.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 1 1-.708-.708L5.293 4 3.146 1.854a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+        }
+
+        /* تأثير hover على أزرار التنقل */
+        .custom-carousel .carousel-control-prev:hover,
+        .custom-carousel .carousel-control-next:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* تنسيق الشريحة (مثلاً نص أو محتوى مركزي) */
+        .carousel-item>.d-flex {
+            height: 300px;
+        }
+
+        .titleMain {
+            text-align: center;
+            margin: 35px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .titleMain:hover {
+            color: #ff5722;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
         }
     </style>
     <link rel="stylesheet" href="css/style.css">
@@ -79,10 +159,13 @@ $stmt->close();
                         <a class="nav-link active" aria-current="page" href="#">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">عروض</a>
+                        <a class="nav-link" href="offers.php">عروض</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">حول</a>
+                        <a class="nav-link" href="about.php">حول</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.php">تواصل معنا</a>
                     </li>
                     <li class="nav-item">
                         <?php
@@ -143,7 +226,7 @@ $stmt->close();
                                 <p>🔹 شاشة مذهلة توفر تجربة مشاهدة لا مثيل لها. 🔹 تصميم عصري يجمع بين القوة والراحة في الاستخدام. 🔹 أداء قوي لمواكبة مهامك اليومية بسرعة وكفاءة.
                                     💡 لا تفوّت الفرصة! احصل على جهازك الآن واستمتع بتجربة متطورة في عالم التكنولوجيا.</p>
                             </div>
-                            
+
                         </div>
                         <div class="carousel-item">
                             <img src="images/bg_2_carousel.png" class="d-block w-100" alt="الشريحة الثانية">
@@ -172,13 +255,61 @@ $stmt->close();
                     </button>
                 </div>
             </div>
+            <div class=""><h2 class="titleMain">عروضات</h2></div>
+            <div class="container-fluid diamond-background custom-carousel">
+                <div id="customCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                    <!-- مؤشرات الكاروسيل -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="الشريحة 1"></button>
+                        <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="1" aria-label="الشريحة 2"></button>
+                        <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="2" aria-label="الشريحة 3"></button>
+                    </div>
+                    <!-- محتويات الشريحة -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class=" justify-content-center align-items-center">
+                                <h2 style="text-align: center; margin:10px 0 100px 0 ">اكتشف الجديد في تشكيلتنا!</h2>
+                                <h4 style="text-align: center; margin:10px 0 30px 0 ">تسوّق الآن وتمتع بخصومات حصرية تصل إلى 25% على أحدث الموديلات. الوقت محدود – اغتنم الفرصة!</h3>
+                                    <div class="d-flex justify-content-center align-items-center" style="margin: 40px 0;">
+                                        <a href="offers.php" class="btn btn-primary ">تسوق الآن</a>
+                                    </div>
+                                    <!-- <img src="images/bg_1_carousel.png" class="d-block w-100" alt="الشريحة الأولى"> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" justify-content-center align-items-center">
+                                <h2 style="text-align: center; margin:10px 0 100px 0 ">اكتشف الجديد في تشكيلتنا!</h2>
+                                <h4 style="text-align: center; margin:10px 0 30px 0 ">تسوّق الآن وتمتع بخصومات حصرية تصل إلى 25% على أحدث الموديلات. الوقت محدود – اغتنم الفرصة!</h3>
+                                    <div class="d-flex justify-content-center align-items-center" style="margin: 40px 0;">
+                                        <a href="offers.php" class="btn btn-primary ">تسوق الآن</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class=" justify-content-center align-items-center">
+
+                                <h2 style="text-align: center; margin:10px 0 100px 0 ">اكتشف الجديد في تشكيلتنا!</h2>
+                                <h4 style="text-align: center; margin:10px 0 30px 0 ">تسوّق الآن وتمتع بخصومات حصرية تصل إلى 25% على أحدث الموديلات. الوقت محدود – اغتنم الفرصة!</h3>
+                                    <div class="d-flex justify-content-center align-items-center" style="margin: 40px 0;">
+                                        <a href="offers.php" class="btn btn-primary ">تسوق الآن</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- أزرار التنقل -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">السابق</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">التالي</span>
+                    </button>
+                </div>
+            </div>
     </div>
     <style>
         .carousel-control-next-icon {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M4.854 0.146a.5.5 0 1 0-.708.708L6.293 3H0.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 1 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3z'/%3E%3C/svg%3E");
-        }
-
-        .carousel-control-prev-icon {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M4.854 0.146a.5.5 0 1 0-.708.708L6.293 3H0.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 1 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3z'/%3E%3C/svg%3E");
         }
 
@@ -188,6 +319,7 @@ $stmt->close();
             transform: scaleX(-1);
         }
     </style>
+            <div class=""><h2 class="titleMain">المنتجات</h2></div>
 
     <!-- Products Grid -->
     <div class="container my-4">
@@ -217,15 +349,8 @@ $stmt->close();
             <?php endif; ?>
         </div>
     </div>
+    <!-- Footer End -->
 
-    <!-- Footer -->
-    <!-- <footer class="bg-dark text-light text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; <?= date("Y"); ?> متجرك. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer> -->
-
-    <!-- Footer Start -->
     <!-- Footer Start -->
     <footer>
         <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">
@@ -308,7 +433,7 @@ $stmt->close();
             </div>
         </div>
         <div class="container-fluid bg-dark py-4">
-            <p class="mb-0 text-center text-light">&copy; <a href="#" class="text-light text-decoration-none">Hamid Muhammed</a>. All Rights Reserved.</p>
+            <p class="mb-0 text-center text-light">&copy; <?= date("Y"); ?> متجر إلكتروني. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
     <!-- Footer End -->
