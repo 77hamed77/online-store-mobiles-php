@@ -3,10 +3,11 @@ session_start();
 include("../php/config.php");
 
 // التأكد من صلاحيات المدير
-// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-//     header("Location: login.php");
+// if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'Admin') {
+//     header("Location: ../login.php");
 //     exit;
 // }
+
 
 // إنشاء رمز CSRF إذا لم يكن موجوداً بالفعل
 if (empty($_SESSION['csrf_token'])) {

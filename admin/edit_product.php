@@ -2,9 +2,10 @@
 session_start();
 include("../php/config.php");
 
-// التحقق من صلاحيات المدير
-// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-//     header("Location: login.php");
+
+// التأكد من صلاحيات المدير
+// if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'Admin') {
+//     header("Location: ../login.php");
 //     exit;
 // }
 
@@ -47,8 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $error_msg = "يجب ملء جميع الحقول!";
     } elseif ($price <= 0) {
         $error_msg = "يجب أن يكون السعر أكبر من الصفر!";
-    }
-    elseif($quantity <= 0){
+    } elseif ($quantity <= 0) {
         $error_msg = " يجب ان تكون الكمية اكبر او تساوي الصفر";
     }
     // معالجة تحميل صورة جديدة إن وُجدت
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     // تحديث البيانات في حال عدم وجود أخطاء
     if (empty($error_msg)) {
         $stmt = $conn->prepare("UPDATE products SET name = ?, description = ?, price = ?,quantity = ?, image = ? WHERE id = ?");
-        $stmt->bind_param("ssdisi", $name, $description, $price,$quantity, $new_image, $product_id);
+        $stmt->bind_param("ssdisi", $name, $description, $price, $quantity, $new_image, $product_id);
 
         if ($stmt->execute()) {
             $success_msg = "تم تحديث المنتج بنجاح!";
@@ -93,12 +93,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 ?>
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تعديل المنتج | لوحة التحكم</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body dir="rtl">
     <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -159,4 +161,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
