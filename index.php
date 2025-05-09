@@ -40,7 +40,9 @@ $stmt->close();
     <title>الصفحة الرئيسية | متجر إلكتروني</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p0vh/tEYSnG/QKoqmRX6Z4xgAE0TCJf9q2yzflP8uDzA9cifFOJCBa0L+Tv67gO2HGl6ETP7ZxgzGRcy2Mif2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p0vh/tEYSnG/QKoqmRX6Z4xgAE0TCJf9q2yzflP8uDzA9cifFOJCBa0L+Tv67gO2HGl6ETP7ZxgzGRcy2Mif2g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     <style>
         body {
             background: #FFFFFF;
@@ -107,47 +109,85 @@ $stmt->close();
 
     <!-- Hero Section -->
     <div class="container my-4">
-        <!-- carousel -->
-        <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="..." class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+        <!DOCTYPE html>
+        <html lang="ar">
 
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>الصفحة الرئيسية | متجر إلكتروني</title>
+            <!-- Bootstrap CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="css/style.css">
+        </head>
+
+        <body dir="rtl">
+            <!-- باقي أجزاء الصفحة مثل الـ Navbar ... -->
+
+            <!-- Hero Section - Carousel -->
+            <div class="container my-4">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="الشريحة 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="الشريحة 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="الشريحة 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images/bg_1_carousel.png" class="d-block w-100" alt="الشريحة الأولى">
+                            <div class="carousel-caption d-none d-md-block text-success">
+                                <h5>✨ اكتشف التكنولوجيا المتطورة بين يديك! ✨ هل تبحث عن الأداء العالي والتصميم الأنيق في جهاز واحد؟ نقدم لك مجموعة من أفضل الأجهزة الذكية التي تجمع بين السرعة، الأناقة، والابتكار لتلبية احتياجاتك اليومية.</h5>
+                                <p>🔹 شاشة مذهلة توفر تجربة مشاهدة لا مثيل لها. 🔹 تصميم عصري يجمع بين القوة والراحة في الاستخدام. 🔹 أداء قوي لمواكبة مهامك اليومية بسرعة وكفاءة.
+                                    💡 لا تفوّت الفرصة! احصل على جهازك الآن واستمتع بتجربة متطورة في عالم التكنولوجيا.</p>
+                            </div>
+                            
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/bg_2_carousel.png" class="d-block w-100" alt="الشريحة الثانية">
+                            <div class="carousel-caption d-none d-md-block text-light">
+                                <h5>✨ اكتشف التكنولوجيا المتطورة بين يديك! ✨ هل تبحث عن الأداء العالي والتصميم الأنيق في جهاز واحد؟ نقدم لك مجموعة من أفضل الأجهزة الذكية التي تجمع بين السرعة، الأناقة، والابتكار لتلبية احتياجاتك اليومية.</h5>
+                                <p>🔹 شاشة مذهلة توفر تجربة مشاهدة لا مثيل لها. 🔹 تصميم عصري يجمع بين القوة والراحة في الاستخدام. 🔹 أداء قوي لمواكبة مهامك اليومية بسرعة وكفاءة.
+                                    💡 لا تفوّت الفرصة! احصل على جهازك الآن واستمتع بتجربة متطورة في عالم التكنولوجيا.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/bg_3_carousel.png" class="d-block w-100" alt="الشريحة الثالثة">
+                            <div class="carousel-caption d-none d-md-block text-dark">
+                                <h5>✨ اكتشف التكنولوجيا المتطورة بين يديك! ✨ هل تبحث عن الأداء العالي والتصميم الأنيق في جهاز واحد؟ نقدم لك مجموعة من أفضل الأجهزة الذكية التي تجمع بين السرعة، الأناقة، والابتكار لتلبية احتياجاتك اليومية.</h5>
+                                <p>🔹 شاشة مذهلة توفر تجربة مشاهدة لا مثيل لها. 🔹 تصميم عصري يجمع بين القوة والراحة في الاستخدام. 🔹 أداء قوي لمواكبة مهامك اليومية بسرعة وكفاءة.
+                                    💡 لا تفوّت الفرصة! احصل على جهازك الآن واستمتع بتجربة متطورة في عالم التكنولوجيا.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">السابق</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">التالي</span>
+                    </button>
+                </div>
+            </div>
     </div>
+    <style>
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M4.854 0.146a.5.5 0 1 0-.708.708L6.293 3H0.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 1 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3z'/%3E%3C/svg%3E");
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M4.854 0.146a.5.5 0 1 0-.708.708L6.293 3H0.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 1 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3z'/%3E%3C/svg%3E");
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M4.854 0.146a.5.5 0 1 0-.708.708L6.293 3H0.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 1 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3z'/%3E%3C/svg%3E");
+            /* عكس السهم أفقيًا */
+            transform: scaleX(-1);
+        }
+    </style>
 
     <!-- Products Grid -->
     <div class="container my-4">
@@ -194,14 +234,15 @@ $stmt->close();
                 <div class="col-lg-3 col-md-6 mb-5">
                     <h4 class="text-uppercase text-light mb-4">التواصل</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-white ms-3"></i> سوريا - إدلب</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-white ms-3"></i>+9053424455</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-white ms-3"></i>+963 949 399 738</p>
                     <p><i class="fa fa-envelope text-white ms-3"></i>info@example.com</p>
                     <h6 class="text-uppercase text-white py-2">تابعنا على المنصات الاجتماعية</h6>
                     <div class="d-flex justify-content-start">
-                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-lg btn-dark btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="bi bi-instagram"></i></a>
+                        <a class="btn btn-lg btn-dark btn-lg-square me-2" href="#"><i class="bi bi-whatsapp"></i></a>
                     </div>
                 </div>
                 <!-- القسم الثاني: روابط مفيدة -->
