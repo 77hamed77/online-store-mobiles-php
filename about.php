@@ -41,9 +41,9 @@ if (isset($_SESSION['username'])) {
         }
 
         /* تذييل الصفحة */
-        footer {
-            background-color: #343a40;
-            color: #fff;
+        
+        .bbgg{
+            background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
         }
     </style>
     <link rel="stylesheet" href="css/style.css">
@@ -79,7 +79,7 @@ if (isset($_SESSION['username'])) {
     </nav>
 
     <!-- قسم البطل (Hero Section) -->
-    <section class="about-hero bg-secondary">
+    <section class="about-hero bbgg">
         <div class="container">
             <h1 class="display-4">من نحن</h1>
             <p class="lead">نحن نقدم أفضل تجربة تسوق إلكتروني تجمع بين الجودة والابتكار.</p>
@@ -189,7 +189,7 @@ if (isset($_SESSION['username'])) {
             </div>
         </div>
         <div class="container-fluid bg-dark py-4">
-            <p class="mb-0">&copy; <?= date("Y"); ?> متجر إلكتروني. جميع الحقوق محفوظة.</p>
+            <p class="mb-0 text-center text-light">&copy; <?= date("Y"); ?> متجر إلكتروني. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
     <!-- Footer End -->

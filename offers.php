@@ -94,7 +94,7 @@
     </nav>
 
     <!-- قسم البطل (Hero Section) -->
-    <section class="hero-section">
+    <section class="hero-section ">
         <div class="container">
             <h1 class="display-5 fw-bold">عروض مميزة</h1>
             <p class="lead">استفد من خصومات حصرية على أفضل المنتجات لفترة محدودة!</p>

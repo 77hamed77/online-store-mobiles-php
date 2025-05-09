@@ -125,6 +125,9 @@ $stmt->close();
                         <a class="nav-link " href="admin_users.php">إدارة المستخدمين</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link " href="admin_contact.php">إدارة تعليقات الزبائن</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
                     </li>
                 </ul>

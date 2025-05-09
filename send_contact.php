@@ -15,28 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "يرجى ملء جميع الحقول بشكل صحيح.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "يرجى إدخال بريد إلكتروني صالح.";
-    } else {
-        // إعداد معطيات الرسالة (يمكنك تغيير البريد المستقبل هنا)
-        $to      = "your-email@example.com"; // قم بتعديل البريد إلى بريد المستلم الصحيح
-        $headers = "From: " . $email . "\r\n" .
-            "Reply-To: " . $email . "\r\n" .
-            "Content-Type: text/plain; charset=utf-8\r\n";
-        $body    = "الاسم: " . $name . "\n" .
-            "البريد الإلكتروني: " . $email . "\n" .
-            "الموضوع: " . $subject . "\n\n" .
-            "الرسالة:\n" . $message;
-
-        // محاولة إرسال الرسالة عبر دالة mail (يمكنك تفعيل وتحسين هذا الجزء حسب إعدادات الخادم)
-        if (mail($to, $subject, $body, $headers)) {
-            $success = "تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت.";
-        } else {
-            $error = "حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى لاحقاً.";
-        }
+    }else{
+    $success = "تم إرسال رسالتك بنجاح انتظر مننا الرد";
     }
-} else {
+    } else {
     // في حال الوصول إلى الصفحة بدون إرسال بيانات النموذج، نقوم بإعادة التوجيه إلى صفحة الاتصال
-    header("Location: contact.php");
-    exit;
+    // header("Location: contact.php");
+    // exit;
 }
 ?>
 <!DOCTYPE html>
@@ -76,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="text-center">
                 <a href="contact.php" class="btn btn-secondary">العودة إلى صفحة الاتصال</a>
             </div>
-        <?php elseif (!empty($success)): ?>
+        <?php elseif (empty($success)): ?>
             <div class="alert alert-success text-center" role="alert">
                 <?php echo $success; ?>
             </div>

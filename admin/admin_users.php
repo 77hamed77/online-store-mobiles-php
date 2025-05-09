@@ -107,6 +107,9 @@ $result = $conn->query($sql);
                         <a class="nav-link" href="admin_product.php">إدارة المنتجات</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link " href="admin_contact.php">إدارة تعليقات الزبائن</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
                     </li>
                 </ul>

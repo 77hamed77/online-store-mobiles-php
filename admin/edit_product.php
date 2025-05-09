@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         <div class="container-fluid ">
             <a class="navbar-brand" href="admin_product.php">لوحة المدير</a>
             <div class="navbar-nav">
-                <a class="nav-link me-auto" href="index.php">المنتجات</a>
+                <a class="nav-link me-auto" href="../index.php">المنتجات</a>
                 <a class="nav-link" href="php/logout.php">تسجيل الخروج</a>
             </div>
         </div>
