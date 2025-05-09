@@ -7,6 +7,7 @@
     <title>قوانين المتجر | متجر إلكتروني</title>
     <!-- تضمين Bootstrap CSS (نسخة RTL) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
         body {
             background-color: #f0f2f5;

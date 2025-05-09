@@ -46,7 +46,7 @@ $stmt->close();
 
         .custom-navbar .navbar-brand,
         .custom-navbar .nav-link {
-            color:rgb(214, 214, 214) !important;
+            color: rgb(214, 214, 214) !important;
         }
 
         .custom-navbar .nav-link:hover {
@@ -64,10 +64,11 @@ $stmt->close();
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid rgb(83, 164, 240);
-            box-shadow:  0 0 10px 2px rgb(83, 164, 240);
+            box-shadow: 0 0 10px 2px rgb(83, 164, 240);
         }
-        .bbgg{
-            background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
+
+        .bbgg {
+            background: -webkit-linear-gradient(top, rgb(83, 164, 240), rgb(0, 0, 0), rgb(83, 164, 240));
         }
     </style>
     <link rel="stylesheet" href="css/style.css">
@@ -99,7 +100,7 @@ $stmt->close();
             </div>
         </div>
     </nav>
-    
+
     <!-- قسم البطل (Hero Section) -->
     <section class="hero-section bbgg " style="margin-bottom:20px; padding: 50px;">
         <div class="container text-light">
@@ -127,7 +128,13 @@ $stmt->close();
         </div>
     </main>
 
-    
+    <div class="alert alert-info text-center">
+        يمكنك تعديل بيانات من هنا </div>
+    <div class="text-center mt-4">
+        <a href="editProfile.php" class="btn btn-primary">تعديل البيانات الشخصية</a>
+    </div>
+
+
     <!-- Footer Start -->
     <footer>
         <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">
@@ -214,7 +221,7 @@ $stmt->close();
         </div>
     </footer>
     <!-- Footer End -->
-    
+
     <!-- تضمين Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

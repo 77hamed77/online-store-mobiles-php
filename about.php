@@ -41,12 +41,12 @@ if (isset($_SESSION['username'])) {
         }
 
         /* تذييل الصفحة */
-        
-        .bbgg{
-            background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
+
+        .bbgg {
+            background: -webkit-linear-gradient(top, rgb(83, 164, 240), rgb(0, 0, 0), rgb(83, 164, 240));
         }
     </style>
-    
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -68,12 +68,12 @@ if (isset($_SESSION['username'])) {
                     <li class="nav-item">
                         <a class="nav-link active" href="#">حول</a>
                     </li>
+                    <li class="nav-item"><a class="nav-link " href="help.php">المساعدة</a></li>
+                    <li class="nav-item"><a class="nav-link " href="roles.php"> قوانين المتجر</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart); ?></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.php">اتصل بنا</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.php">اتصل بنا</a></li>
                 </ul>
             </div>
         </div>
@@ -93,7 +93,7 @@ if (isset($_SESSION['username'])) {
             <div class="row align-items-center">
                 <!-- صورة توضيحية -->
                 <div class="col-md-6 mb-4">
-                    <img src="images/bg_5.jpeg"  class="img-fluid rounded my-5" style="width: 550px;height:550px" alt="حول موقعنا">
+                    <img src="images/bg_5.jpeg" class="img-fluid rounded my-5" style="width: 550px;height:550px" alt="حول موقعنا">
                 </div>
                 <!-- تفاصيل حول الشركة -->
                 <div class="col-md-6 " style="margin-top:-50px ;">

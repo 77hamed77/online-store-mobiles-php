@@ -70,7 +70,7 @@ $stmt->close();
 
 <body dir="rtl">
     <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.php">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -81,8 +81,9 @@ $stmt->close();
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">الرئيسية</a>
                     </li>
+                    <li class="nav-item "><a class="nav-link active" href="checkout.php">صفحة الدفع</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.php">سلة المنتجات</a>
+                        <a class="nav-link" href="products.php">سلة المنتجات</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profile.php">الملف الشخصي</a>
@@ -148,7 +149,7 @@ $stmt->close();
                         </div>
                         <!-- حقل مخفي لنقل إجمالي السعر -->
                         <input type="hidden" name="total" value="<?php echo $total; ?>">
-                        <button type="submit" class="btn btn-success w-100">ادفع الآن</button>
+                        <button type="submit" class="btn btn-primary w-100">ادفع الآن</button>
                     </form>
                 </div>
             </div>

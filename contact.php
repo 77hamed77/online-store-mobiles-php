@@ -101,6 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.php">الصفحة الرئيسية</a></li>
                     <li class="nav-item"><a class="nav-link " href="about.php"> حول</a></li>
+                    <li class="nav-item"><a class="nav-link " href="helps.php"> المساعدة</a></li>
+                    <li class="nav-item"><a class="nav-link " href="roles.php"> قوانين المتجر</a></li>
                     <li class="nav-item"><a class="nav-link active" href="contact.php">اتصل بنا</a></li>
                 </ul>
             </div>

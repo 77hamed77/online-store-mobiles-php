@@ -43,6 +43,10 @@
         .accordion-button:not(.collapsed) {
             background-color: #e9ecef;
         }
+
+        .bbgg {
+            background: -webkit-linear-gradient(top, rgb(83, 164, 240), rgb(0, 0, 0), rgb(83, 164, 240));
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -59,7 +63,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.php">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.php">حول المتجر</a></li>
                     <li class="nav-item"><a class="nav-link active" href="help.php">المساعدة</a></li>
+                    <li class="nav-item"><a class="nav-link " href="roles.php"> قوانين المتجر</a></li>    
                     <li class="nav-item"><a class="nav-link" href="contact.php">اتصل بنا</a></li>
                 </ul>
             </div>
@@ -67,7 +73,7 @@
     </nav>
 
     <!-- قسم البطل -->
-    <section class="hero-section">
+    <section class="hero-section bbgg">
         <div class="container">
             <h1 class="display-4 fw-bold">مركز المساعدة</h1>
             <p class="lead">تعرف على كيفية إجراء عملية الشراء بشكل صحيح وتجنب الأخطاء الشائعة.</p>
@@ -139,12 +145,12 @@
         </div>
     </section>
 
-<div class="alert alert-info text-center">
-                يمكنك التواصل معنا لنساعدك في حل مشكلتك
-            </div>
-            <div class="text-center mt-4">
-                <a href="contact.php" class="btn btn-primary">تواصل معنا</a>
-            </div>
+    <div class="alert alert-info text-center">
+        يمكنك التواصل معنا لنساعدك في حل مشكلتك
+    </div>
+    <div class="text-center mt-4">
+        <a href="contact.php" class="btn btn-primary">تواصل معنا</a>
+    </div>
     <!-- Footer Start -->
     <footer>
         <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">
