@@ -105,23 +105,24 @@ $stmt->close();
             object-fit: cover;
         }
     </style>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body dir="rtl">
     <!-- شريط التنقل باستخدام Bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="users.php">لوحة المدير</a>
+            <a class="navbar-brand" href="admin_product.php">لوحة المدير</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="adminNavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="users.php">إدارة المنتجات</a>
+                        <a class="nav-link active" href="admin_product.php">إدارة المنتجات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="tableUsers.php">إدارة المستخدمين</a>
+                        <a class="nav-link " href="admin_users.php">إدارة المستخدمين</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
@@ -187,7 +188,7 @@ $stmt->close();
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>#</th>
                                 <th>اسم المنتج</th>

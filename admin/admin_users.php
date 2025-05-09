@@ -3,10 +3,10 @@ session_start();
 include("../php/config.php");
 
 // التحقق من صلاحيات المدير؛ يجب على المدير أن يكون له دور "admin" أو قيمة مخصصة
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit;
-}
+// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+//     header("Location: login.php");
+//     exit;
+// }
 
 $error_msg = "";
 $success_msg = "";
@@ -87,6 +87,7 @@ $result = $conn->query($sql);
     <title>إدارة المستخدمين | لوحة المدير</title>
     <!-- تضمين Bootstrap CSS (نسخة RTL لدعم اللغة العربية) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -98,12 +99,12 @@ $result = $conn->query($sql);
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" href="admin_users.php">إدارة المستخدمين</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="users.php">إدارة المنتجات</a>
+                        <a class="nav-link" href="admin_product.php">إدارة المنتجات</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>

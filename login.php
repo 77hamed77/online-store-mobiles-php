@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         }
         // التحقق من صلاحيات المدير: يجب أن يكون المستخدم مسجّل دخول كمدير
         elseif($email == 'admin@example.com' && $password == '123123'){
-            header("Location: admin/users.php");
+            header("Location: admin/admin_product.php");
             exit;
         }
         else {

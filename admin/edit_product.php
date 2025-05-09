@@ -11,7 +11,7 @@ include("../php/config.php");
 
 // التحقق من وجود معرّف المنتج
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: users.php");
+    header("Location: admin_product.php");
     exit;
 }
 
@@ -28,7 +28,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows !== 1) {
-    header("Location: admin/users.php");
+    header("Location: admin/admin_product.php");
     exit;
 }
 
@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid ">
-            <a class="navbar-brand" href="users.php">لوحة المدير</a>
+            <a class="navbar-brand" href="admin_product.php">لوحة المدير</a>
             <div class="navbar-nav">
                 <a class="nav-link me-auto" href="index.php">المنتجات</a>
                 <a class="nav-link" href="php/logout.php">تسجيل الخروج</a>
@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         <?php endif; ?>
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary">تحديث المنتج</button>
-                    <a href="users.php" class="btn btn-secondary">إلغاء</a>
+                    <a href="admin_product.php" class="btn btn-secondary">إلغاء</a>
                 </form>
             </div>
         </div>
