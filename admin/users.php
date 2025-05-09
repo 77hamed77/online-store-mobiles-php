@@ -118,7 +118,10 @@ $stmt->close();
             <div class="collapse navbar-collapse" id="adminNavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../index.php">المنتجات</a>
+                        <a class="nav-link active" href="users.php">إدارة المنتجات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="tableUsers.php">إدارة المستخدمين</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
