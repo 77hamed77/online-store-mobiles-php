@@ -35,7 +35,7 @@ html {
 body {
     font-family: cairo; 
     /* direction: rtl; */
-    background: #e4e9f7;
+    background: #e4eef7;
 }
 
 ul {
@@ -94,7 +94,7 @@ ul {
 
 .btn {
     height: 35px;
-    background-color: rgba(76, 68, 182, 0.808);
+    background-color: rgb(84, 163, 238);
     border: 0px;
     border-radius: 5px;
     color: #FFFFFF;
@@ -147,6 +147,7 @@ nav {
     align-items: center;
     justify-content: center;
     margin: 0 12px;
+    
 }
 
 .main-top{

@@ -54,7 +54,7 @@ if (isset($_SESSION['username'])) {
     <!-- شريط التنقل (اختياري) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">متجر إلكتروني</a>
+            <a class="navbar-brand" href="#">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل التنقل">
                 <span class="navbar-toggler-icon"></span>

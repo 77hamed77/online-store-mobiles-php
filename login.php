@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     </div>
 
                     <div class="links">
-                        ليس لديك حساب؟ <a href="register.php">سجل الآن</a>
+                        ليس لديك حساب؟ <a href="register.php" style="color: rgb(54, 151, 241);">سجل الآن</a>
                     </div>
                 </form>
             <?php endif; ?>

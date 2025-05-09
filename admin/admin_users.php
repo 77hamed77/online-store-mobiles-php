@@ -101,13 +101,13 @@ $result = $conn->query($sql);
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link " href="admin_product.php">إدارة المنتجات</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="admin_users.php">إدارة المستخدمين</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_product.php">إدارة المنتجات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="admin_contact.php">إدارة تعليقات الزبائن</a>
+                        <a class="nav-link " href="admin_contact.php">إدارة رسائل الإتصال</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>

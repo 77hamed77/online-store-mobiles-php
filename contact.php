@@ -1,6 +1,39 @@
 <?php
-// إذا كنت ترغب بمعالجة بيانات النموذج في نفس الصفحة، يمكنك وضع الكود هنا
-// أو يمكنك إرسال البيانات إلى ملف آخر (مثلاً send_contact.php)
+session_start();
+include("php/config.php"); // تأكد من إنشاء هذا الملف وتعديل إعدادات الاتصال بقاعدة البيانات
+
+$error   = "";
+$success = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // استقبال وتنظيف المدخلات
+    $name    = trim($_POST['name']);
+    $email   = trim($_POST['email']);
+    $subject = trim($_POST['subject']);
+    $message = trim($_POST['message']);
+
+    // التحقق من ملء الحقول وصحة البريد الإلكتروني
+    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+        $error = "يرجى ملء جميع الحقول.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "يرجى إدخال بريد إلكتروني صالح.";
+    } else {
+        // تأمين المدخلات قبل الإدخال في قاعدة البيانات
+        $name    = mysqli_real_escape_string($conn, $name);
+        $email   = mysqli_real_escape_string($conn, $email);
+        $subject = mysqli_real_escape_string($conn, $subject);
+        $message = mysqli_real_escape_string($conn, $message);
+
+        // استعلام الإدراج في جدول contacts ويحتوي على الحقول: id, name, email, subject, message, create_at
+        $query = "INSERT INTO contacts (name, email, subject, message, created_at) VALUES ('$name', '$email', '$subject', '$message', NOW())";
+
+        if (mysqli_query($conn, $query)) {
+            $success = "تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت.";
+        } else {
+            $error = "حدث خطأ أثناء إرسال رسالتك، يرجى المحاولة مرة أخرى لاحقاً.";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -9,27 +42,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اتصل بنا | متجر إلكتروني</title>
-    <!-- Bootstrap CSS (نسخة RTL) -->
+    <!-- تضمين Bootstrap CSS (نسخة RTL) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
-
     <style>
         body {
             background-color: #f8f9fa;
         }
 
-        /* تنسيق قسم البطل مع خلفية مميزة */
+        /* تنسيق قسم البطل */
         .contact-header {
-            background: url('images/contact-bg.jpg') no-repeat center center/cover;
             position: relative;
-            padding: 100px 0;
+            padding: 80px 0;
             text-align: center;
             color: #fff;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
         }
 
-        /* طبقة تغطية لتحسين تباين النص */
         .contact-header::before {
             content: "";
             position: absolute;
@@ -37,27 +64,28 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .contact-header h1,
         .contact-header p {
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
         /* تنسيق نموذج الاتصال */
-        .contact-form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .contact-form-container {
+            margin-top: -40px;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
         .bbgg{
             background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
         }
     </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -65,36 +93,46 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.php">LOGO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل التنقل">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.php">الرئيسية</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.php">حول</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php">الصفحة الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link " href="about.php"> حول</a></li>
                     <li class="nav-item"><a class="nav-link active" href="contact.php">اتصل بنا</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- قسم البطل (Hero Section) -->
-    <header class="contact-header bbgg">
+    <!-- قسم البطل -->
+    <section class="contact-header bbgg">
         <div class="container">
-            <h1 class="display-4">اتصل بنا</h1>
-            <p class="lead">نحن هنا للإستماع إليك. شاركنا آرائك واستفساراتك وسنكون سعداء بمساعدتك.</p>
+            <h1 class="display-4 fw-bold">اتصل بنا</h1>
+            <p class="lead">نحن هنا للإستماع إليك! شاركنا استفساراتك أو ملاحظاتك.</p>
         </div>
-    </header>
+    </section>
 
     <!-- قسم نموذج الاتصال -->
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="contact-form">
-                        <h2 class="mb-4 text-center">أرسل لنا رسالتك</h2>
-                        <form action="send_contact.php" method="post">
+                    <!-- عرض رسائل الخطأ والنجاح -->
+                    <?php if (!empty($error)): ?>
+                        <div class="alert alert-danger text-center" role="alert">
+                            <?php echo $error; ?>
+                        </div>
+                    <?php elseif (!empty($success)): ?>
+                        <div class="alert alert-success text-center" role="alert">
+                            <?php echo $success; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="contact-form-container">
+                        <h2 class="text-center mb-4">أرسل رسالتك</h2>
+                        <form action="contact.php" method="post">
                             <div class="mb-3">
                                 <label for="name" class="form-label">الاسم الكامل</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="أدخل اسمك كاملاً" required>
@@ -120,8 +158,10 @@
             </div>
         </div>
     </section>
+
+
     <!-- Footer Start -->
-    <footer style="margin-top:-50px ;">
+    <footer>
         <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">
             <div class="row pt-5">
                 <!-- القسم الأول: التواصل -->
@@ -206,8 +246,7 @@
         </div>
     </footer>
     <!-- Footer End -->
-
-    <!-- تضمين Bootstrap JS Bundle (يشمل Popper) -->
+    <!-- تضمين Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

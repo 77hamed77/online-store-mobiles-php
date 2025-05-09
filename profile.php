@@ -41,12 +41,12 @@ $stmt->close();
     <style>
         /* تخصيص ألوان الخلفية والنصوص */
         .custom-navbar {
-            background-color: rgba(76, 68, 182, 0.808) !important;
+            color: rgba(76, 68, 182, 0.808) !important;
         }
 
         .custom-navbar .navbar-brand,
         .custom-navbar .nav-link {
-            color: #FFFFFF !important;
+            color:rgb(214, 214, 214) !important;
         }
 
         .custom-navbar .nav-link:hover {
@@ -63,7 +63,11 @@ $stmt->close();
             height: 130px;
             object-fit: cover;
             border-radius: 50%;
-            border: 2px solid rgba(76, 68, 182, 0.808);
+            border: 2px solid rgb(83, 164, 240);
+            box-shadow:  0 0 10px 2px rgb(83, 164, 240);
+        }
+        .bbgg{
+            background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
         }
     </style>
     <link rel="stylesheet" href="css/style.css">
@@ -71,27 +75,38 @@ $stmt->close();
 
 <body>
     <!-- شريط التنقل باستخدام Bootstrap مع تخصيص الألوان -->
-    <nav class="navbar navbar-expand-lg custom-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="index.php"> LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل التنقل">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link active" href="profile.php">الملف الشخصي</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="editProfile.php">تعديل الملف الشخصي</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">الصفحة الرئيسية</a>
+                        <a class="nav-link " href="index.php">الصفحة الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="php/logout.php">تسجيل الخروج</a>
+                        <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    <!-- قسم البطل (Hero Section) -->
+    <section class="hero-section bbgg " style="margin-bottom:20px; padding: 50px;">
+        <div class="container text-light">
+            <h1 class="display-5 fw-bold">صفحتك الشخصية </h1>
+            <p class="lead">يمكنك مشاهدة بياناتك الشخصية هنا و أيضاً يمكنك التعديل عليها و إضافة صورة لك </p>
+        </div>
+    </section>
 
     <!-- المحتوى الرئيسي -->
     <main class="d-flex justify-content-center align-items-center my-5">

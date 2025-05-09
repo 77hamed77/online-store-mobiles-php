@@ -60,6 +60,9 @@
             font-size: 1.25rem;
             font-weight: 600;
         }
+        .bbgg{
+            background: -webkit-linear-gradient(top  , rgb(83, 164, 240),rgb(0,0,0),rgb(83, 164, 240));
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
 
@@ -70,23 +73,23 @@
     <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.php">متجرك</a>
+            <a class="navbar-brand" href="index.php">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">الرئيسية</a>
+                        <a class="nav-link" aria-current="page" href="index.php">الرئيسية</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="offers.php">عروض</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">منتجات</a>
+                        <a class="nav-link" href="about.php">حول</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">اتصل بنا</a>
+                        <a class="nav-link" href="contact.php">تواصل معنا</a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +97,7 @@
     </nav>
 
     <!-- قسم البطل (Hero Section) -->
-    <section class="hero-section ">
+    <section class="hero-section bbgg">
         <div class="container">
             <h1 class="display-5 fw-bold">عروض مميزة</h1>
             <p class="lead">استفد من خصومات حصرية على أفضل المنتجات لفترة محدودة!</p>
