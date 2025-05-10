@@ -191,7 +191,7 @@ $stmt->close();
     </nav>
 
     <!-- Hero Section -->
-    <div class="container my-4">
+    <div class="container my-4" >
         <!DOCTYPE html>
         <html lang="ar">
 
@@ -218,7 +218,7 @@ $stmt->close();
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                             aria-label="الشريحة 3"></button>
                     </div>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" >
                         <div class="carousel-item active">
                             <img src="images/bg_1_carousel.png" class="d-block w-100" alt="الشريحة الأولى">
                             <div class="carousel-caption d-none d-md-block text-success">

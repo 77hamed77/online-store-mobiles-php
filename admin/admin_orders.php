@@ -1,47 +1,16 @@
 <?php
 session_start();
-include("php/config.php");
+include("../php/config.php"); // تأكد من وجود ملف الاتصال بقاعدة البيانات
 
-// التأكد من تسجيل دخول المستخدم
-if (!isset($_SESSION['id'])) {
-    header("Location: login.php");
-    exit;
-}
+// التحقق من صلاحيات المدير
+// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+//     header("Location: login.php");
+//     exit();
+// }
 
-$error_msg = "";
-$success_msg = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // استقبال بيانات الدفع
-    $cardname   = trim($_POST['cardname']);
-    $cardnumber = trim($_POST['cardnumber']);
-    $expdate    = trim($_POST['expdate']);
-    $cvv        = trim($_POST['cvv']);
-    $total      = floatval($_POST['total']);
-
-    // تحقق بسيط من صحة الحقول
-    if (empty($cardname) || empty($cardnumber) || empty($expdate) || empty($cvv) || $total <= 0) {
-        $error_msg = "الرجاء ملء كافة الحقول بشكل صحيح.";
-    } else {
-        // هنا يمكنك دمج واجهة برمجة دفع (Payment Gateway API) لمعالجة الدفع.
-        // سنقوم بمحاكاة نجاح الدفع:
-
-        // (مثال اختياري) إدراج بيانات الطلب في قاعدة البيانات:
-        $stmt = $conn->prepare("INSERT INTO orders (user_id, total, created_at) VALUES (?, ?, NOW())");
-        $stmt->bind_param("id", $_SESSION['id'], $total);
-        $stmt->execute();
-        $order_id = $stmt->insert_id;
-        $stmt->close();
-
-        // مسح سلة المنتجات بعد نجاح الدفع
-        $stmt_clear = $conn->prepare("DELETE FROM cart WHERE user_id = ?");
-        $stmt_clear->bind_param("i", $_SESSION['id']);
-        $stmt_clear->execute();
-        $stmt_clear->close();
-
-        $success_msg = "تمت معالجة الدفع بنجاح! تم دفع " . number_format($total, 2) . " ريال.";
-    }
-}
+// استعلام لاسترجاع كافة الطلبات من جدول orders وترتيبها حسب تاريخ الإنشاء (الأحدث أولاً)
+$query  = "SELECT * FROM orders ORDER BY created_at DESC";
+$result = mysqli_query($conn, $query) or die("حدث خطأ أثناء استرجاع الطلبات");
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -49,67 +18,102 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معالجة الدفع | متجرك</title>
-    <!-- تضمين Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>إدارة الطلبات | لوحة الإدارة</title>
+    <!-- تضمين Bootstrap CSS (نسخة RTL) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
+
     <style>
         body {
-            background: #f8f9fa;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .table-responsive {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
         }
     </style>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.php">متجرك</a>
-            <div class="collapse navbar-collapse">
+            <a class="navbar-brand" href="#">لوحة الإدارة</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav"
+                aria-controls="adminNav" aria-expanded="false" aria-label="تبديل التنقل">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="adminNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">الرئيسية</a>
+                        <a class="nav-link" href="admin_product.php">إدارة المنتجات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.php">سلة المنتجات</a>
+                        <a class="nav-link active" href="admin_orders.php">الطلبات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.php">الملف الشخصي</a>
+                        <a class="nav-link " href="admin_users.php">إدارة المستخدمين</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="php/logout.php">تسجيل الخروج</a>
+                        <a class="nav-link " href="admin_contact.php">إدارة رسائل الإتصال</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <?php if (!empty($error_msg)): ?>
-            <div class="alert alert-danger">
-                <?php echo $error_msg; ?>
-            </div>
-        <?php elseif (!empty($success_msg)): ?>
-            <div class="alert alert-success">
-                <?php echo $success_msg; ?>
-            </div>
-            <div class="text-center mt-4">
-                <a href="index.php" class="btn btn-primary">العودة للرئيسية</a>
-            </div>
-        <?php else: ?>
-            <!-- إذا وصل المستخدم لهذه الصفحة بدون إرسال بيانات الدفع، يتم إعادة التوجيه أو عرض رسالة -->
-            <div class="alert alert-info text-center">
-                لا توجد بيانات للدفع
-            </div>
-            <div class="text-center mt-4">
-                <a href="cart.php" class="btn btn-primary">العودة إلى السلة</a>
-            </div>
-        <?php endif; ?>
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <h2 class="text-center mb-4">إدارة الطلبات</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>معرّف المستخدم</th>
+                        <th>الإجمالي</th>
+                        <th>تاريخ الطلب</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['user_id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['total']); ?></td>
+                            <td><?php echo htmlspecialchars($row['created_at']); ?></td>
+                            <td>
+                                <!-- أمثلة على أزرار الإجراءات؛ يمكنك تعديلها حسب الحاجة -->
+                                <a href="order_details.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-info">عرض</a>
+                                <a href="delete_order.php?id=<?php echo $row['id']; ?>"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
+                                    حذف
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    
     <!-- Footer Start -->
     <footer>
         <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5 mt-5">
@@ -196,7 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </footer>
     <!-- Footer End -->
-
+    
+    <!-- تضمين Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
