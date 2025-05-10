@@ -17,4 +17,3 @@ if ($stmt->execute()) {
     echo "حدث خطأ أثناء إنشاء الحساب.";
 }
 $stmt->close();
-?>

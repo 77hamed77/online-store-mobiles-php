@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <title>تعديل الملف الشخصي | متجر إلكتروني</title>
     <link rel="stylesheet" href="css/styleLogin.css">
 </head>
-<body dir="rtl">
+<body dir="rtl" style="background: #e4eef7;">
     
     <div class="container" style="margin: 50px 0;">
         <div class="box form-box">

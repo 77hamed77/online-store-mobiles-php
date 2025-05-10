@@ -68,7 +68,7 @@ $stmt->close();
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body dir="rtl">
+<body dir="rtl" style="background: #e4eef7;">
     <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">

@@ -43,42 +43,56 @@ $result = mysqli_query($conn, $query) or die("حدث خطأ أثناء استر�
         .navbar-brand {
             font-weight: bold;
         }
+        .dashboard-header {
+            background: linear-gradient(135deg, #007bff, rgb(0, 38, 48));
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .dashboard-header p {
+            margin: 0;
+            font-size: 1.25rem;
+        }
     </style>
 </head>
 <!-- اريد إضافة اسم المنتج و اسم الميتخدم الذي قام بالطلب -->
-<body>
+
+<body style="background: #e4eef7;">
+
     <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top:-28px">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top: -28px;">
         <div class="container">
-            <a class="navbar-brand" href="#">لوحة الإدارة</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav"
-                aria-controls="adminNav" aria-expanded="false" aria-label="تبديل التنقل">
+            <a class="navbar-brand" href="admin_dashboard.php">لوحة الإدارة</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav" aria-controls="adminNav" aria-expanded="false" aria-label="تبديل التنقل">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="adminNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link " href="admin_product.php">إدارة المنتجات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="admin_users.php">إدارة المستخدمين</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="admin_contact.php">إدارة رسائل الإتصال</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="admin_orders.php">إدارة الطلبات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="admin_offers.php">إدارة العروض</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="admin_product.php">إدارة المنتجات</a></li>
+                    <li class="nav-item"><a class="nav-link " href="admin_offers.php">إدارة العروض</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="admin_orders.php">إدارة الطلبات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin_contact.php">إدارة رسائل الاتصال</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin_users.php">إدارة الزبائن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../php/logout.php">تسجيل الخروج</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+        <!-- قسم رأس الصفحة -->
+    <header class="dashboard-header">
+        <div class="container">
+            <h1>لوحة إدارة الطلبات</h1>
+            <p>يمكنك رؤية و تعديل و إضافة و حذف الطلبات</p>
+        </div>
+    </header>
 
     <!-- المحتوى الرئيسي -->
     <div class="container">
@@ -117,8 +131,8 @@ $result = mysqli_query($conn, $query) or die("حدث خطأ أثناء استر�
         </div>
     </div>
 
-    
-    
+
+
     <!-- تضمين Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

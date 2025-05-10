@@ -76,7 +76,7 @@ $result = mysqli_query($conn, $query) or die("حدث خطأ أثناء استر�
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body style="background: #e4eef7;">
 
     <!-- شريط التنقل -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

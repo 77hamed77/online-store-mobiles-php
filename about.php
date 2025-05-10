@@ -50,7 +50,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body style="background: #e4eef7;">
 
     <!-- شريط التنقل (اختياري) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -68,7 +68,7 @@ if (isset($_SESSION['username'])) {
                     <li class="nav-item">
                         <a class="nav-link active" href="#">حول</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link " href="help.php">المساعدة</a></li>
+                    <li class="nav-item"><a class="nav-link " href="helps.php">المساعدة</a></li>
                     <li class="nav-item"><a class="nav-link " href="roles.php"> قوانين المتجر</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="products.php"><?php echo htmlspecialchars($name_cart); ?></a>

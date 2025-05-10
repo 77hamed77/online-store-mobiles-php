@@ -74,7 +74,7 @@ $stmt->close();
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body style="background: #e4eef7;">
     <!-- شريط التنقل باستخدام Bootstrap مع تخصيص الألوان -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
