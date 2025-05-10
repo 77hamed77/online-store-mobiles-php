@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a class="nav-link" href="index.php">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.php">سلة المنتجات</a>
+                        <a class="nav-link" href="products.php">سلة المنتجات</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profile.php">الملف الشخصي</a>
