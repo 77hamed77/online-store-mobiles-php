@@ -56,19 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="stylesheet" href="style.css">
     <style>
         body {
-            background: #f8f9fa;
+            background: #e4eef7
         }
     </style>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="background: #e4eef7;">
+<body>
     <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.php">متجرك</a>
+            <a class="navbar-brand" href="index.php">LOGO</a>
             <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">الرئيسية</a>
                     </li>
