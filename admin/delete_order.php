@@ -51,7 +51,7 @@ $stmt->close();
 
 <body>
     <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top:-28px">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top:-48px">
         <div class="container">
             <a class="navbar-brand" href="#">لوحة الإدارة</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav" aria-controls="adminNav" aria-expanded="false" aria-label="تبديل التنقل">

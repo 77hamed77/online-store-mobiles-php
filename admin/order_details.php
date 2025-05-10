@@ -51,7 +51,7 @@ if (!$order) {
 <!-- اريد إضافة اسم المنتج و اسم الميتخدم الذي قام بالطلب -->
 <body>
     <!-- شريط التنقل -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top:-28px">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">لوحة الإدارة</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav" aria-controls="adminNav" aria-expanded="false" aria-label="تبديل التنقل">
@@ -73,7 +73,7 @@ if (!$order) {
                 <?php echo $error_message; ?>
             </div>
             <div class="text-center mt-3">
-                <a href="admin_orders.php" class="btn btn-secondary">العودة إلى الطلبات</a>
+                <a href="admin_orders.php" class="btn btn-primary">العودة إلى الطلبات</a>
             </div>
         <?php else: ?>
             <div class="card">
@@ -88,7 +88,7 @@ if (!$order) {
                     <!-- يمكنك إضافة تفاصيل إضافية إذا قمت بتخزين معلومات أخرى للطلب مثل حالة الدفع أو عنوان الشحن -->
                 </div>
                 <div class="card-footer text-center">
-                    <a href="admin_orders.php" class="btn btn-secondary">العودة إلى الطلبات</a>
+                    <a href="admin_orders.php" class="btn btn-primary">العودة إلى الطلبات</a>
                 </div>
             </div>
         <?php endif; ?>
