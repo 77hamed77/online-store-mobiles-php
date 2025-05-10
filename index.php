@@ -317,7 +317,7 @@ $stmt->close();
                     <div class="col-md-4 mb-4">
                         <div class="card product-card h-100">
                             <?php if (!empty($product['image'])): ?>
-                                <img src="uploads/<?= htmlspecialchars($product['image']); ?>" class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']); ?>">
+                                <img style="background-size: cover;" src="uploads/<?= htmlspecialchars($product['image']);  ?>" class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']); ?>">
                             <?php else: ?>
                                 <img src="img/default-product.png" class="card-img-top product-img" alt="صورة افتراضية">
                             <?php endif; ?>
