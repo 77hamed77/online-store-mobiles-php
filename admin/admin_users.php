@@ -111,7 +111,10 @@ $result = $conn->query($sql);
                         <a class="nav-link " href="admin_contact.php">إدارة رسائل الإتصال</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="admin_orders.php">الطلبات</a>
+                        <a class="nav-link " href="admin_orders.php">إدارة الطلبات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="admin_offers.php">إدارة العروض</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../php/logout.php">تسجيل الخروج</a>
